@@ -108,9 +108,9 @@ export default ({
       }
   },
 
-  mounted() {
-    // this. login();
-    this.getAllData();
+  async mounted() {
+    await this. login();
+    await this.getAllData();
   },
 
   methods: {
