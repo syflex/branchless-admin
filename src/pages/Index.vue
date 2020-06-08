@@ -43,14 +43,14 @@
       <q-separator color="teal-10"/>
 
       <q-card-section class="row justify-between">
-        <div>
+        <!-- <div>
           <div>Male</div>
           <div>200</div>
         </div>
         <div>
           <div>Female</div>
           <div>200</div>
-        </div>
+        </div> -->
       </q-card-section>
     </q-card>
 
@@ -109,7 +109,8 @@ export default ({
   },
 
   mounted() {
-    this.getAllData()
+    this. login();
+    this.getAllData();
   },
 
   methods: {
