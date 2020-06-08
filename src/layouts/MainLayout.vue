@@ -1,6 +1,6 @@
 <template>
   <q-layout view="lHh Lpr lFf" >
-    <q-header class="bg-secondary">
+    <q-header class="bg-secondary" v-if="theroute != 'login'">
       <div class="header-bar"/>
       <q-toolbar>
         <q-toolbar-title>
@@ -28,7 +28,8 @@
       <q-separator color="teal-10"/>
     </q-header>
 
-    <q-drawer v-model="leftDrawerOpen"  >
+    <q-drawer v-model="leftDrawerOpen" bordered >
+
       <q-list>
         <q-item-label
           header
@@ -48,7 +49,7 @@
       show-if-above
       bordered
       content-class="bg-grey-1"
-      v-if="$q.screen.gt.sm"
+      v-if="theroute != 'login'"
     >
       <q-list>
         <q-item-label
@@ -126,7 +127,7 @@ export default {
         {
           title: 'CMS',
           icon: 'ion-create',
-          link: '/cms'
+          link: 'cms'
         },
         {
           title: 'Analytics',
@@ -135,6 +136,9 @@ export default {
         },
       ]
     }
-  }
+  },
+  computed: {
+    theroute(){return this.$route.name}
+  },
 }
 </script>

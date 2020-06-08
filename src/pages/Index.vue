@@ -1,7 +1,7 @@
 <template>
   <q-page padding class="q-py-xl row justify-center">
 
-    <q-card square dark class="transparent card-border col-3 shadow-5 hoverable shadow-transition">
+    <q-card square dark class="transparent card-border col-md-3 col-xs-12 shadow-5 hoverable shadow-transition">
       <q-card-section class="column flex-center">
          <div class="text-h6 text-bold">
          {{ users ? users.length : 0}}
@@ -28,7 +28,7 @@
     </q-card>
 
 
-    <q-card square dark class="transparent card-border col-3 shadow-5 hoverable shadow-transition">
+    <q-card square dark class="transparent card-border col-md-3 col-xs-12 shadow-5 hoverable shadow-transition">
       <q-card-section class="column flex-center">
          <div class="text-h6 text-bold">
          {{ bankTrans ? bankTrans.length : 0}}
@@ -55,7 +55,7 @@
     </q-card>
 
 
-    <q-card square dark class="transparent card-border col-3 shadow-5 hoverable shadow-transition">
+    <q-card square dark class="transparent card-border col-md-3 col-xs-12 shadow-5 hoverable shadow-transition">
       <q-card-section class="column flex-center">
          <div class="text-h6 text-bold">
          {{ walletTrans ? walletTrans.length : 0}}
