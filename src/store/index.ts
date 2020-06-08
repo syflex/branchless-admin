@@ -1,8 +1,8 @@
 import { store } from 'quasar/wrappers';
 import Vuex from 'vuex';
 
-// import example from './module-example';
-// import { ExampleStateInterface } from './module-example/state';
+import DataAuth from './data-auth';
+import { DataAuthStateInterface } from './data-auth/state';
 
 /*
  * If not building with SSR mode, you can
@@ -11,7 +11,7 @@ import Vuex from 'vuex';
 
 export interface StoreInterface {
   // Define your own store structure, using submodules if needed
-  // example: ExampleStateInterface;
+  DataAuth: DataAuthStateInterface;
   // Declared as unknown to avoid linting issue. Best to strongly type as per the line above.
   example: unknown;
 }
@@ -21,7 +21,7 @@ export default store(function ({ Vue }) {
 
   const Store = new Vuex.Store<StoreInterface>({
     modules: {
-      // example
+      DataAuth
     },
 
     // enable strict mode (adds overhead!)

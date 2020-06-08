@@ -1,1 +1,13 @@
 // app global css in SCSS form
+body
+{
+  background-color: #091a28;
+}
+div.card-border{
+  border: 1px solid #004d40;
+}
+.header-bar
+{
+  background: linear-gradient(90deg,#fff,#8ed6fb 50%,#004d40);
+  padding: 2px;
+}

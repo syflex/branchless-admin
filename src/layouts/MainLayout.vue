@@ -1,39 +1,64 @@
 <template>
-  <q-layout view="lHh Lpr lFf">
-    <q-header elevated>
+  <q-layout view="lHh Lpr lFf" >
+    <q-header class="bg-secondary">
+      <div class="header-bar"/>
       <q-toolbar>
-        <q-btn
-          flat
-          dense
-          round
-          icon="menu"
-          aria-label="Menu"
-          @click="leftDrawerOpen = !leftDrawerOpen"
-        />
-
         <q-toolbar-title>
-          Quasar App
+         <div class="">
+            <img src="statics/branchlessLogoWhite.png" style="max-width: 150px" v-if="$q.screen.lt.md">
+            <!-- <div class="absolute-bottom text-weight-light q-mb-sm text-caption text-center">
+              ...simply save
+            </div> -->
+          </div>
         </q-toolbar-title>
 
-        <div>Quasar v{{ $q.version }}</div>
+      <q-btn flat dense round v-if="$q.screen.lt.md" icon="menu" aria-label="Menu" @click="leftDrawerOpen = !leftDrawerOpen" />
+
+        <q-tabs stretch inline-label active-color="primary" v-if="$q.screen.gt.sm">
+          <q-route-tab no-caps icon="ion-ios-people" label="Users" to="/" exact />
+           <q-route-tab no-caps icon="account_balance" label="Bank Transactions" to="/" exact />
+            <q-route-tab no-caps icon="fa fa-chart-line" label="Wallet Transactions" to="/" exact />
+          <q-route-tab no-caps icon="fa fa-chart-bar" label="Chart" to="/" exact />
+          <q-route-tab no-caps icon="fa fa-cogs" label="Settings" to="/" exact />
+        </q-tabs>
+
+
+        <!-- <q-btn dense flat round icon="menu" @click="left = !left" class="lt-sm"/> -->
       </q-toolbar>
+      <q-separator color="teal-10"/>
     </q-header>
 
+    <q-drawer v-model="leftDrawerOpen"  >
+      <q-list>
+        <q-item-label
+          header
+          class="text-grey-8"
+        >
+        </q-item-label>
+        <EssentialLink
+          v-for="link in essentialLinks"
+          :key="link.title"
+          v-bind="link"
+        />
+      </q-list>
+    </q-drawer>
+
     <q-drawer
-      v-model="leftDrawerOpen"
+      v-model="left"
       show-if-above
       bordered
       content-class="bg-grey-1"
+      v-if="$q.screen.gt.sm"
     >
       <q-list>
         <q-item-label
           header
           class="text-grey-8"
         >
-          Essential Links
+          <img src="statics/branchlessLogo.png" style="max-width: 200px">
         </q-item-label>
         <EssentialLink
-          v-for="link in essentialLinks"
+          v-for="link in leftBar"
           :key="link.title"
           v-bind="link"
         />
@@ -58,50 +83,56 @@ export default {
 
   data () {
     return {
-      leftDrawerOpen: false,
+      left: false,
+      leftDrawerOpen:false,
       essentialLinks: [
         {
-          title: 'Docs',
-          caption: 'quasar.dev',
-          icon: 'school',
-          link: 'https://quasar.dev'
+          title: 'Home',
+          icon: 'home',
+          link: '/'
         },
         {
-          title: 'Github',
-          caption: 'github.com/quasarframework',
-          icon: 'code',
-          link: 'https://github.com/quasarframework'
+          title: 'Users',
+          icon: 'ion-ios-people',
+          link: '/'
         },
         {
-          title: 'Discord Chat Channel',
-          caption: 'chat.quasar.dev',
-          icon: 'chat',
-          link: 'https://chat.quasar.dev'
+          title: 'Bank Transactions',
+          icon: 'account_balance',
+          link: '/'
         },
         {
-          title: 'Forum',
-          caption: 'forum.quasar.dev',
-          icon: 'record_voice_over',
-          link: 'https://forum.quasar.dev'
+          title: 'Wallet Transaction',
+          icon: 'fa fa-chart-line',
+          link: '/'
         },
         {
-          title: 'Twitter',
-          caption: '@quasarframework',
-          icon: 'rss_feed',
-          link: 'https://twitter.quasar.dev'
+          title: 'Chart',
+          icon: 'fa fa-chart-bar',
+          link: '/'
         },
         {
-          title: 'Facebook',
-          caption: '@QuasarFramework',
-          icon: 'public',
-          link: 'https://facebook.quasar.dev'
+          title: 'settings',
+          icon: 'fa fa-cogs',
+          link: '/'
         },
         {
-          title: 'Quasar Awesome',
-          caption: 'Community Quasar projects',
-          icon: 'favorite',
-          link: 'https://awesome.quasar.dev'
-        }
+          title: 'CMS',
+          icon: 'ion-create',
+          link: '/cms'
+        },
+      ],
+      leftBar: [
+        {
+          title: 'CMS',
+          icon: 'ion-create',
+          link: '/cms'
+        },
+        {
+          title: 'Analytics',
+          icon: 'ion-pulse',
+          link: '/'
+        },
       ]
     }
   }
