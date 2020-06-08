@@ -109,7 +109,7 @@ export default ({
   },
 
   mounted() {
-    this. login();
+    // this. login();
     this.getAllData();
   },
 
