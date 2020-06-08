@@ -1,70 +1,126 @@
 <template>
-  <q-page class="row items-center justify-evenly">
-    <example-component
-      title="Example component"
-      active
-      :todos="todos"
-      :meta="meta"
-    ></example-component>
+  <q-page padding class="q-py-xl row">
+
+    <q-card square dark class="transparent card-border col-3 shadow-5 hoverable shadow-transition">
+      <q-card-section class="column flex-center">
+         <div class="text-h6 text-bold">
+         {{ users ? users.length : 0}}
+          <q-icon name="fa fa-chart-line" />
+        </div>
+        <div class="text-bold row flex-center">
+          <q-icon name="fa fa-users" class="q-mr-md" />
+          <div>Users</div>
+        </div>
+      </q-card-section>
+
+      <q-separator color="teal-10"/>
+
+      <q-card-section class="row justify-between">
+        <div>
+          <div>Male</div>
+          <div>200</div>
+        </div>
+        <div>
+          <div>Female</div>
+          <div>200</div>
+        </div>
+      </q-card-section>
+    </q-card>
+
+
+    <q-card square dark class="transparent card-border col-3 shadow-5 hoverable shadow-transition">
+      <q-card-section class="column flex-center">
+         <div class="text-h6 text-bold">
+         {{ bankTrans ? bankTrans.length : 0}}
+          <q-icon name="fa fa-chart-line" />
+        </div>
+        <div class="text-bold row flex-center">
+          <q-icon name="fa fa-piggy-bank" class="q-mr-md" />
+          <div>Bank Transactions</div>
+        </div>
+      </q-card-section>
+
+      <q-separator color="teal-10"/>
+
+      <q-card-section class="row justify-between">
+        <div>
+          <div>Male</div>
+          <div>200</div>
+        </div>
+        <div>
+          <div>Female</div>
+          <div>200</div>
+        </div>
+      </q-card-section>
+    </q-card>
+
+
+    <q-card square dark class="transparent card-border col-3 shadow-5 hoverable shadow-transition">
+      <q-card-section class="column flex-center">
+         <div class="text-h6 text-bold">
+         {{ walletTrans ? walletTrans.length : 0}}
+          <q-icon name="fa fa-chart-line" />
+        </div>
+        <div class="text-bold row flex-center">
+          <q-icon name="fa fa-wallet" class="q-mr-md" />
+          <div>Wallet Transactions</div>
+        </div>
+      </q-card-section>
+
+      <q-separator color="teal-10"/>
+
+      <q-card-section class="row justify-between">
+        <div>
+          <div>Male</div>
+          <div>200</div>
+        </div>
+        <div>
+          <div>Female</div>
+          <div>200</div>
+        </div>
+      </q-card-section>
+    </q-card>
+
   </q-page>
 </template>
 
-<script lang="ts">
-import Vue from 'vue';
+<script>
 
-import ExampleComponent from 'components/CompositionComponent.vue';
-import { Todo, Meta } from 'components/models';
-
-export default Vue.extend({
+export default ({
   name: 'PageIndex',
-  components: { ExampleComponent },
   data() {
-    const todos: Todo[] = [
-      {
-        id: 1,
-        content: 'ct1'
+    return {
+
+   };
+  },
+
+  computed: {
+      users(){
+        return this.$store.getters['DataAuth/users'];
       },
-      {
-        id: 2,
-        content: 'ct2'
+
+      bankTrans(){
+        return this.$store.getters['DataAuth/bankTrans'];
       },
-      {
-        id: 3,
-        content: 'ct3'
-      },
-      {
-        id: 4,
-        content: 'ct4'
-      },
-      {
-        id: 5,
-        content: 'ct5'
+
+      walletTrans(){
+        return this.$store.getters['DataAuth/walletTrans'];
       }
-    ];
-    const meta: Meta = {
-      totalCount: 1200
-    };
-    return { todos, meta };
   },
 
   mounted() {
-    this.getUsers()
+    this.getAllData()
   },
 
   methods: {
-    // login(){
-    //   // const req = await this.$axios.post('https://branchless.world/branposdev01/admin/login',
-    //   //   {
-    //   //     phone: '8031888217',
-    //   //     pin: "123456"
-    //   //   }
-    //   // )
+    login(){
+      this.$store.dispatch('DataAuth/login')
+    },
 
-    //     // this.$q.localStorage.set('branchless-admin-token', 'value')
-    // }
-
-    async getUsers(){
-      const req = await this.$axios.get(process.env.Api+'/admin/countUsers')
+    getAllData(){
+      this.$store.dispatch('DataAuth/getUsers')
+      this.$store.dispatch('DataAuth/getBankTrans')
+      this.$store.dispatch('DataAuth/getWalletTrans')
     }
   },
 });
