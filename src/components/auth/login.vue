@@ -3,9 +3,6 @@
     <q-card flat dark class="bg-transparent">
       <div class="column flex-center">
         <img src="statics/branchlessLogoWhite.png" style="max-width: 300px">
-          <div class="text-weight-light q-mb-lg ">
-            Admin
-          </div>
       </div>
 
       <q-card-section class="q-gutter-sm">
@@ -26,7 +23,12 @@
 
       </q-card-section>
       <q-card-section>
-        <q-btn rounded color="primary" :to="{name : 'analytics'}" no-caps label="Login" class="full-width" />
+        <q-btn rounded color="primary" @click="login()" no-caps label="Login" class="full-width" :loading="loading">
+          <template v-slot:loading class="text-italic">
+            <q-spinner-gears class="on-left" />
+           ..login in
+          </template>
+        </q-btn>
       </q-card-section>
     </q-card>
   </div>
@@ -37,11 +39,35 @@ export default {
   // name: 'ComponentName',
   data () {
     return {
+      loading: false,
       form:{
         email: '',
         password: ''
       }
     }
-  }
+  },
+
+  methods: {
+    async login(){
+      try {
+        this.loading = true;
+        const res = this.$axiosadmin.post('http://localhost:1337/auth/local',
+            {
+              'identifier': this.form.email,
+              'password': this.form.password
+            },
+            {
+              headers:{ Authorization: ''}
+            }
+        )
+        this.loading = false;
+        await this.$store.dispatch('DataAuth/login');
+        this.$router.push({name: 'analytics'});
+      } catch (error) {
+        this.loading = false;
+      }
+
+    }
+  },
 }
 </script>

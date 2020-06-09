@@ -5,15 +5,10 @@
       <q-toolbar>
         <q-toolbar-title>
          <div class="">
-            <img src="statics/branchlessLogoWhite.png" style="max-width: 150px" v-if="$q.screen.lt.md">
-            <!-- <div class="absolute-bottom text-weight-light q-mb-sm text-caption text-center">
-              ...simply save
-            </div> -->
+            <img src="statics/branchlessLogoWhite.png" style="max-width: 150px">
           </div>
         </q-toolbar-title>
-
-      <q-btn flat dense round v-if="$q.screen.lt.md" icon="menu" aria-label="Menu" @click="leftDrawerOpen = !leftDrawerOpen" />
-
+        
         <q-tabs stretch inline-label active-color="primary" v-if="$q.screen.gt.sm">
           <q-route-tab no-caps icon="ion-ios-people" label="Users" to="/" exact />
            <q-route-tab no-caps icon="account_balance" label="Bank Transactions" to="/" exact />
@@ -23,12 +18,12 @@
         </q-tabs>
 
 
-        <!-- <q-btn dense flat round icon="menu" @click="left = !left" class="lt-sm"/> -->
+        <q-btn dense flat round icon="menu" @click="left = !left" class="lt-sm"/>
       </q-toolbar>
       <q-separator color="teal-10"/>
     </q-header>
 
-    <q-drawer v-model="leftDrawerOpen" bordered >
+    <q-drawer v-model="left" bordered >
 
       <q-list>
         <q-item-label
@@ -44,7 +39,7 @@
       </q-list>
     </q-drawer>
 
-    <q-drawer
+    <!-- <q-drawer width="250px"
       v-model="left"
       show-if-above
       bordered
@@ -64,7 +59,7 @@
           v-bind="link"
         />
       </q-list>
-    </q-drawer>
+    </q-drawer> -->
 
     <q-page-container>
       <router-view />
