@@ -14,7 +14,7 @@
             </div>
           </template>
         </q-input>
-        <q-input dark outlined dense rounded v-model="form.password" label="Enter Your Password" >
+        <q-input dark type="password" outlined dense rounded v-model="form.password" label="Enter Your Password" >
           <template v-slot:prepend>
             <q-icon name="ion-unlock" />
             <div class="q-px-sm">|</div>
@@ -23,12 +23,7 @@
 
       </q-card-section>
       <q-card-section>
-        <q-btn rounded color="primary" @click="login()" no-caps label="Login" class="full-width" :loading="loading">
-          <template v-slot:loading class="text-italic">
-            <q-spinner-gears class="on-left" />
-           ..login in
-          </template>
-        </q-btn>
+        <q-btn rounded color="primary" @click="login()" no-caps label="Login" class="full-width"/>
       </q-card-section>
     </q-card>
   </div>
@@ -39,7 +34,6 @@ export default {
   // name: 'ComponentName',
   data () {
     return {
-      loading: false,
       form:{
         email: '',
         password: ''
@@ -49,16 +43,10 @@ export default {
 
   methods: {
     async login(){
-      try {
-        this.loading = true;
         const res = this.$axiosadmin.post(process.env.Admin_Api+'/api/login', this.form)
         this.loading = false;
         await this.$store.dispatch('DataAuth/login');
         this.$router.push({name: 'analytics'});
-      } catch (error) {
-        this.loading = false;
-      }
-
     }
   },
 }
