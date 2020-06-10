@@ -43,8 +43,7 @@ export default {
 
   methods: {
     async login(){
-        const res = this.$axiosadmin.post(process.env.Admin_Api+'/api/login', this.form)
-        this.loading = false;
+        this.$axio.post(process.env.Admin_Api+'/api/login', this.form)
         await this.$store.dispatch('DataAuth/login');
         this.$router.push({name: 'analytics'});
     }
