@@ -11,7 +11,5 @@ declare module 'vue/types/vue' {
 export default boot(({ Vue }) => {
   Vue.prototype.$axios = axios;
   const token = LocalStorage.getItem('branchless-data-auth-token');
-  axios.defaults.headers.common['Authorization'] = + token;
-
-  Vue.prototype.$axiosadmin = axios;
+  axios.defaults.headers.common['Authorization'] = token;
 });
