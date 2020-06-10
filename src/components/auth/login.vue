@@ -51,15 +51,7 @@ export default {
     async login(){
       try {
         this.loading = true;
-        const res = this.$axiosadmin.post('http://localhost:1337/auth/local',
-            {
-              'identifier': this.form.email,
-              'password': this.form.password
-            },
-            {
-              headers:{ Authorization: ''}
-            }
-        )
+        const res = this.$axiosadmin.post(process.env.Admin_Api+'/api/login', this.form)
         this.loading = false;
         await this.$store.dispatch('DataAuth/login');
         this.$router.push({name: 'analytics'});

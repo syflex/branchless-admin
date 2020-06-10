@@ -8,13 +8,13 @@
             <img src="statics/branchlessLogoWhite.png" style="max-width: 150px">
           </div>
         </q-toolbar-title>
-        
+
         <q-tabs stretch inline-label active-color="primary" v-if="$q.screen.gt.sm">
-          <q-route-tab no-caps icon="ion-ios-people" label="Users" to="/" exact />
-           <q-route-tab no-caps icon="account_balance" label="Bank Transactions" to="/" exact />
-            <q-route-tab no-caps icon="fa fa-chart-line" label="Wallet Transactions" to="/" exact />
-          <q-route-tab no-caps icon="fa fa-chart-bar" label="Chart" to="/" exact />
-          <q-route-tab no-caps icon="fa fa-cogs" label="Settings" to="/" exact />
+          <q-route-tab no-caps icon="ion-ios-people" label="Users" to="#" exact />
+           <q-route-tab no-caps icon="account_balance" label="Bank Transactions" to="#" exact />
+            <q-route-tab no-caps icon="fa fa-chart-line" label="Wallet Transactions" to="#" exact />
+          <q-route-tab no-caps icon="fa fa-chart-bar" label="Chart" to="#" exact />
+          <q-route-tab no-caps icon="fa fa-cogs" label="Settings" to="#" exact />
         </q-tabs>
 
 
@@ -85,32 +85,32 @@ export default {
         {
           title: 'Home',
           icon: 'home',
-          link: '/'
+          link: '/analytics'
         },
         {
           title: 'Users',
           icon: 'ion-ios-people',
-          link: '/'
+          link: '#'
         },
         {
           title: 'Bank Transactions',
           icon: 'account_balance',
-          link: '/'
+          link: '#'
         },
         {
           title: 'Wallet Transaction',
           icon: 'fa fa-chart-line',
-          link: '/'
+          link: '#'
         },
         {
           title: 'Chart',
           icon: 'fa fa-chart-bar',
-          link: '/'
+          link: '#'
         },
         {
           title: 'settings',
           icon: 'fa fa-cogs',
-          link: '/'
+          link: '#'
         },
         {
           title: 'CMS',
@@ -127,7 +127,7 @@ export default {
         {
           title: 'Analytics',
           icon: 'ion-pulse',
-          link: '/'
+          link: '/analytics'
         },
       ]
     }
