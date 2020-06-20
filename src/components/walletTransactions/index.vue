@@ -1,8 +1,8 @@
 <template>
   <div>
     <q-table square
-      title="Bank Transactions"
-      :data="bankTrans"
+      title="Wallet Transaction"
+      :data="walletTrans"
       :columns="columns"
       row-key="name"
     />
@@ -26,20 +26,19 @@ export default {
           sortable: true
         },
         { name: 'phone', align: 'center', label: 'Phone', field: 'phone', sortable: true },
-        { name: 'account', label: 'Account', field: 'account', sortable: true },
-        { name: 'status', label: 'Status', field: 'status', sortable: true },
-        { name: 'type', label: 'Type', field: 'type' },
         { name: 'amount', label: 'Amount', field: 'amount', sortable: true },
-        { name: 'charge', label: 'Charge', field: 'charge', sortable: true },
+        { name: 'reciever', label: 'Reciever', field: 'reciever', sortable: true },
+        { name: 'recv_name', label: 'Reciever Name', field: 'recv_name' },
+        { name: 'status', label: 'Status', field: 'status', sortable: true },
         { name: 'createdAt', label: 'Transaction Date', field: 'createdAt', sortable: true, format: val => `${date.formatDate(val, 'YYYY-MM-DD')}` },
       ]
     }
   },
 
   computed: {
-     bankTrans() {
-      return this.$store.getters['DataAuth/bankTrans'];
-    },
+    walletTrans() {
+      return this.$store.getters['DataAuth/walletTrans'];
+    }
   },
 }
 </script>
