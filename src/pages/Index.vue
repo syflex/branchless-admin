@@ -38,45 +38,45 @@ export default {
           label: 'Total',
           value: 'all',
           description: '',
-          category: '1'
+          type: 'base'
         },
         {
           label: 'Day-On-Day',
           value: 'day',
           description: '',
-          category: '1'
+          type: 'base'
         },
         {
           label: 'Week-On-Week',
           value: 'week',
           description: '',
-          category: '1'
+          type: 'base'
         },
         {
           label: 'Month-On-Month',
           value: 'month',
           description: '',
-          category: '1'
+          type: 'base'
         },
         {
           label: 'Quaterly',
           value: 'quaterly',
           description: '',
-          category: '1'
+          type: 'base'
         },
         {
           label: 'Bi-Anually',
           value: 'bi-anually',
           disable: true,
           description: '',
-          category: '1'
+          type: 'base'
         },
         {
           label: 'Year-On-Year',
           value: 'year',
           disable: false,
           description: '',
-          category: '1'
+          type: 'base'
         }
       ]
     };

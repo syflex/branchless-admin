@@ -17,11 +17,17 @@ export default {
   },
 
   methods: {
-    sortGeneralField(data, sortField, sortValue) {
-      const result = data.filter(function(data) {
-        return data[sortField] == sortValue;
-      });
-      return result ? result.length : 0;
+    sortGeneralField(data, query1) {
+      if (query1) {
+        const result = data.filter(function(data) {
+          return data[query1.field] == query1.value;
+        });
+        return result ? result : 0;
+      }else{
+        console.log('bring data');
+
+        return data
+      }
     },
 
     sortToday(data, query1, query2, type, dateOption){

@@ -4,11 +4,11 @@
         square
         dark
         class="transparent card-border shadow-5 hoverable shadow-transition"
-      >{{ filter }}
+      >
         <q-card-section class="column flex-center">
           <div class="text-h6 text-bold">
             <span class="text-caption text-grey-8">total</span>
-            {{ users ? users.length : 0 }} | {{ sortToday(users, {field: 'createdAt', value: ''}, {}, 'current').length, }}
+            {{ leftFunc(users, {field: 'createdAt', value: ''}, {}, filter) }} | {{ rightFunc(users, {field: 'createdAt', value: ''}, {}, filter) }}
             <span class="text-caption text-grey-8">today</span>
             <!-- <q-icon name="fa fa-chart-line" /> -->
           </div>
@@ -64,6 +64,33 @@ export default {
     users() {
       return this.$store.getters['DataAuth/users'];
     },
+  },
+
+  methods: {
+    leftFunc(data, query1, query2, filter){
+      if(filter.value == 'day' && filter.type == 'base'){
+        return this.sortToday(data, query1, query2, 'previous').length
+      }else if(filter.value == 'week' && filter.type == 'base'){
+        return this.sortWeek(data, query1, query2, 'previous').length
+      }else if(filter.value == 'month' && filter.type == 'base'){
+        return this.sortMonth(data, query1, query2, 'previous').length
+      }else{
+        return this.sortGeneralField(data, {}).length
+      }
+    },
+
+    rightFunc(data, query1, query2, filter){
+      if(filter.value == 'day' && filter.type == 'base'){
+        return this.sortToday(data, query1, query2, 'current').length
+      }else if(filter.value == 'week' && filter.type == 'base'){
+        return this.sortWeek(data, query1, query2, 'current').length
+      }else if(filter.value == 'month' && filter.type == 'base'){
+        return this.sortMonth(data, query1, query2, 'current').length
+      }else{
+        return this.sortToday(data, query1, query2, 'current').length
+      }
+    }
+
   },
 
 }
