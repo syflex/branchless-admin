@@ -24,8 +24,6 @@ export default {
         });
         return result ? result : 0;
       }else{
-        console.log('bring data');
-
         return data
       }
     },

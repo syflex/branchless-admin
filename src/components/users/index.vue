@@ -40,8 +40,8 @@
           </q-td>
 
           <q-td key="agent" :props="props">
-            <q-badge>
-              {{ props.row.agent }}
+            <q-badge color="primary">
+              {{ props.row.agent ? 'Agent' : 'User'  }}
             </q-badge>
           </q-td>
           <q-td key="createdAt" :props="props">
@@ -51,8 +51,25 @@
               {{ formatDate(props.row.date_of_birth) }}
           </q-td>
           <q-td key="action" :props="props" class="q-gutter-xs">
-              <q-btn size="sm" no-caps color="negative"  label="Deactivate" />
-              <q-btn size="sm" no-caps color="secondary" label="Make Agent" />
+               <q-btn size="sm" no-caps color="primary" label="View" :to="{name: 'user-details', params:{phone: props.row.phone}}" />
+
+              <q-btn size="sm" no-caps :color="props.row.status == 'active' ? 'negative' : 'primary'"  @click="enableDisableUser(props.row.phone, props.row.status)" :loading="loading1 == props.row.phone ? true : false">
+                  {{ props.row.status == 'active' ? 'Disable' : 'Enable' }}
+                <template v-slot:loading>
+                  <div class="text-italic">
+                      <q-spinner-oval /> Loading...
+                  </div>
+                </template>
+              </q-btn>
+
+              <q-btn size="sm" no-caps color="secondary" @click="makeAgent(props.row.phone)" :loading="loading == props.row.phone ? true : false" :disable="props.row.agent ? true : false">
+                Make Agent
+                <template v-slot:loading>
+                  <div class="text-italic">
+                      <q-spinner-oval /> Loading...
+                  </div>
+                </template>
+              </q-btn>
           </q-td>
 
         </q-tr>
@@ -70,6 +87,8 @@ export default {
   data () {
     return {
       filter: '',
+      loading: false,
+      loading1: false,
       columns: [
         {
           name: 'name',
@@ -104,7 +123,34 @@ export default {
   methods: {
     formatDate(data){
       return date.formatDate(data, 'YYYY-MM-DD')
-    }
+    },
+
+    async makeAgent(phone){
+      this.loading = phone;
+      try {
+        const response = await this.$axios.post(process.env.Api + '/admin/userToAgent', { phone: phone });
+        const data = await response.data;
+        this.$store.dispatch('DataAuth/getUsers');
+        this.$q.notify({ color: 'primary', message: data.message + ': User Converted to Agent', icon: 'info'})
+        this.loading = false
+      } catch (error) {
+        this.loading = false
+      }
+    },
+
+    async enableDisableUser(phone, status){
+      this.loading1 = phone;
+      try {
+        const response = await this.$axios.post(process.env.Api + '/admin/' + (status == 'active' ? 'disableUser' : 'enableUser'), { phone: phone });
+        const data = await response.data;
+        this.$store.dispatch('DataAuth/getUsers');
+        this.$q.notify({ color: 'primary', message: data.message + ': User ' + (status == 'active' ? 'Disabled' : 'Enable'), icon: 'info'})
+        this.loading1 = false
+      } catch (error) {
+        this.loading1 = false
+      }
+    },
+
   },
 }
 </script>

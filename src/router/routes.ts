@@ -8,10 +8,10 @@ const routes: RouteConfig[] = [
       { path: '', name: 'login', component: () => import('pages/Auth.vue') },
       { path: 'analytics', name: 'analytics', component: () => import('pages/Index.vue') },
       { path: 'analytics/users', name: 'users', component: () => import('pages/Users.vue') },
+      { path: 'analytics/user/:phone', name: 'user-details', component: () => import('pages/Users.vue') },
       { path: 'analytics/bank-transaction', name: 'bank-transaction', component: () => import('pages/BankTransactions.vue') },
       { path: 'analytics/wallet-transaction', name: 'wallet-transaction', component: () => import('pages/walletTransactions.vue') },
       { path: 'cms', name: 'cms', component: () => import('pages/CMS.vue') },
-
   ]
   }
 ];

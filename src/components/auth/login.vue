@@ -23,7 +23,15 @@
 
       </q-card-section>
       <q-card-section>
-        <q-btn rounded color="primary" @click="login()" no-caps label="Login" class="full-width"/>
+        <q-btn rounded color="primary" @click="login()" no-caps label="Login" :type="isPwd ? 'password' : 'text'" class="full-width" :disabled="!formIsValid">
+            <template v-slot:append>
+              <q-icon
+                :name="isPwd ? 'visibility_off' : 'visibility'"
+                class="cursor-pointer"
+                @click="isPwd = !isPwd"
+              />
+            </template>
+        </q-btn>
       </q-card-section>
     </q-card>
   </div>
@@ -34,6 +42,8 @@ export default {
   // name: 'ComponentName',
   data () {
     return {
+      isPwd: true,
+      loading: false,
       form:{
         email: '',
         password: ''
@@ -41,11 +51,18 @@ export default {
     }
   },
 
+  computed: {
+    formIsValid () {
+      return this.form.email !== '' &&
+            this.form.password !== ''
+    },
+  },
+
   methods: {
     async login(){
         this.$axios.post(process.env.Admin_Api+'/api/login', this.form)
         await this.$store.dispatch('DataAuth/login');
-        this.$router.push({name: 'analytics'});
+        this.$router.push({name: 'users'});
     }
   },
 }

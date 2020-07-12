@@ -1,16 +1,18 @@
 <template>
   <q-page padding>
     <!-- content -->
-    <users />
+    <users v-if="$route.name == 'users'"/>
+    <details v-else/>
   </q-page>
 </template>
 
 <script>
 import users from 'components/users/index'
+import details from 'components/users/details'
 export default {
   // name: 'PageName',
   components:{
-    users
+    users, details
   }
 }
 </script>

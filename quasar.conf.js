@@ -21,7 +21,7 @@ module.exports = configure(function (ctx) {
     },
 
     // https://quasar.dev/quasar-cli/cli-documentation/prefetch-feature
-    // preFetch: true,
+    preFetch: true,
 
     // app boot file (/src/boot)
     // --> boot files are part of "main.js"
@@ -110,7 +110,7 @@ module.exports = configure(function (ctx) {
 
       // Quasar plugins
       plugins: [
-        'LocalStorage',
+        'LocalStorage','Notify'
       ]
     },
 
