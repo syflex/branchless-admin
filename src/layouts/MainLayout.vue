@@ -91,7 +91,7 @@ export default {
         {
           title: 'Users',
           icon: 'ion-ios-people',
-          link: '#'
+          link: 'users'
         },
         {
           title: 'Bank Transactions',
