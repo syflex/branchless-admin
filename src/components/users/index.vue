@@ -1,7 +1,7 @@
 <template>
   <div>
 
-    <q-table square title="Users" :data="users" :columns="columns" row-key="name"  :filter="filter">
+    <q-table square title="Users" :data="users" :columns="columns" row-key="phone"  :filter="filter">
 
       <template v-slot:top-right>
         <q-input outlined dense debounce="300" v-model="filter" placeholder="Search">
