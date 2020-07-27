@@ -40,7 +40,7 @@
           </q-td>
 
           <q-td key="agent" :props="props">
-            <q-badge color="primary">
+            <q-badge :color="props.row.agent ? 'secondary' : 'primary'">
               {{ props.row.agent ? 'Agent' : 'User'  }}
             </q-badge>
           </q-td>
