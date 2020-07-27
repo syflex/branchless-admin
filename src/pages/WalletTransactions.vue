@@ -1,16 +1,16 @@
 <template>
   <q-page padding>
     <!-- content -->
-    <WalletTransaction />
+    <!-- <WalletTransaction /> -->
   </q-page>
 </template>
 
 <script>
-import WalletTransaction from 'components/walletTransactions/index'
+// import WalletTransaction from 'components/walletTransactions/index'
 export default {
   // name: 'PageName',
   components:{
-    WalletTransaction
+    // WalletTransaction
   }
 }
 </script>
