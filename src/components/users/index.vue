@@ -22,15 +22,15 @@
           <q-td key="email" :props="props">
               {{ props.row.email }}
           </q-td>
-          <q-td key="location" :props="props">
+          <!-- <q-td key="location" :props="props">
               {{ props.row.location }}
-          </q-td>
+          </q-td> -->
           <q-td key="gender" :props="props">
               {{ props.row.gender }}
           </q-td>
           <q-td key="verified" :props="props">
             <q-badge :color="props.row.verified ? 'primary' : 'negative'">
-              {{ props.row.verified }}
+              {{ props.row.verified ? 'Verified' : 'Unverified' }}
             </q-badge>
           </q-td>
            <q-td key="status" :props="props">
@@ -101,7 +101,7 @@ export default {
         },
         { name: 'phone', align: 'center', label: 'Phone', field: 'phone', sortable: true },
         { name: 'email', label: 'Email', field: 'email', sortable: true },
-        { name: 'location', label: 'Location', field: 'location', sortable: true },
+        // { name: 'location', label: 'Location', field: 'location', sortable: true },
         { name: 'gender', label: 'Gender', field: 'gender' },
         { name: 'verified', label: 'Verified', field: 'verified' },
         { name: 'status', label: 'Status', field: 'status', sortable: true },
