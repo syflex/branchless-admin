@@ -8,7 +8,7 @@ import routes from './routes';
  * directly export the Router instantiation
  */
 
-export default route<StoreInterface>(function ({ Vue } : {Vue:any}) {
+export default route<StoreInterface>(function ({ Vue }) {
   Vue.use(VueRouter);
 
   const Router = new VueRouter({
