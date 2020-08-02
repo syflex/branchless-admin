@@ -11,6 +11,15 @@ export default {
   // name: 'PageName',
   components:{
     BankTransactions
-  }
+  },
+  async mounted() {
+    await this.getBankTransactions()
+  },
+
+  methods: {
+    getBankTransactions(){
+      this.$store.dispatch('DataAuth/getBankTrans');
+    }
+  },
 }
 </script>

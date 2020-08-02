@@ -2,7 +2,7 @@
   <div>
     <q-card class="column flex-center" flat="">
     <q-card-section>
-         <h3> {{currencyFormat(walletTotal)}} </h3>
+         <h4> {{currencyFormat(walletTotal)}} </h4>
     </q-card-section>
     </q-card>
 

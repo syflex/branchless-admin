@@ -17,12 +17,12 @@
           <q-route-tab no-caps icon="fa fa-chart-line" label="Wallet Total" :to="{name: 'wallet-total'}" exact />
           <q-route-tab no-caps icon="fa fa-chart-line" label="Savings" :to="{name: 'savings'}" exact />
           <q-route-tab no-caps icon="fa fa-chart-line" label="Plans" :to="{name: 'plans'}" exact />
-          <q-route-tab no-caps icon="fa fa-chart-bar" label="Chart" to="#" exact disable />
-          <q-route-tab no-caps icon="fa fa-cogs" label="Settings" to="#" exact disable />
+          <!-- <q-route-tab no-caps icon="fa fa-chart-bar" label="Chart" to="#" exact disable />
+          <q-route-tab no-caps icon="fa fa-cogs" label="Settings" to="#" exact disable /> -->
         </q-tabs>
 
 
-        <q-btn dense flat round icon="menu" @click="left = !left" class="lt-sm"/>
+        <q-btn dense flat round icon="menu" @click="left = !left" class="lt-md"/>
       </q-toolbar>
       <q-separator color="teal-10"/>
     </q-header>
@@ -101,13 +101,13 @@ export default {
         {
           title: 'Bank Transactions',
           icon: 'account_balance',
-          link: '#',
+          link: 'bank-transaction',
           disable: false
         },
         {
           title: 'Wallet Transaction',
           icon: 'fa fa-chart-line',
-          link: '#',
+          link: 'wallet-transaction',
           disable: false
         },
         {
@@ -117,22 +117,34 @@ export default {
           disable: false
         },
         {
+          title: 'Savings',
+          icon: 'fa fa-chart-line',
+          link: 'savings',
+          disable: false
+        },
+        {
+          title: 'Plans',
+          icon: 'fa fa-chart-line',
+          link: 'plans',
+          disable: false
+        },
+        {
           title: 'Chart',
           icon: 'fa fa-chart-bar',
           link: '#',
-          disable: false
+          disable: true
         },
         {
           title: 'settings',
           icon: 'fa fa-cogs',
           link: '#',
-          disable: false
+          disable: true
         },
         {
           title: 'CMS',
           icon: 'ion-create',
           link: '/cms',
-          disable: false
+          disable: true
         },
       ],
       leftBar: [

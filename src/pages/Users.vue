@@ -13,6 +13,17 @@ export default {
   // name: 'PageName',
   components:{
     users, userDetails
-  }
+  },
+
+  async mounted() {
+    await this.getUsers()
+  },
+
+  methods: {
+    getUsers(){
+      this.$store.dispatch('DataAuth/getUsers');
+    }
+  },
+
 }
 </script>
