@@ -1,6 +1,6 @@
 <template>
   <q-item
-    clickable :to="{name: link}"
+    clickable :to="{name: link}" :disable="disable"
   >
     <q-item-section
       v-if="icon"
@@ -40,6 +40,11 @@ export default {
     icon: {
       type: String,
       default: ''
+    },
+
+    disable: {
+      type: Boolean,
+      default: false
     }
   }
 }

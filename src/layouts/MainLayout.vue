@@ -10,10 +10,13 @@
         </q-toolbar-title>
 
         <q-tabs stretch inline-label active-color="primary" v-if="$q.screen.gt.sm">
-          <q-route-tab no-caps icon="ion-ios-home" label="Home" to="/analytics" exact disable/>
+          <q-route-tab no-caps icon="ion-ios-home" label="Home" to="/analytics" exact disable />
           <q-route-tab no-caps icon="ion-ios-people" label="Users" :to="{name: 'users'}" exact />
           <q-route-tab no-caps icon="account_balance" label="Bank Transactions" :to="{name: 'bank-transaction'}" exact />
           <q-route-tab no-caps icon="fa fa-chart-line" label="Wallet Transactions" :to="{name: 'wallet-transaction'}" exact />
+          <q-route-tab no-caps icon="fa fa-chart-line" label="Wallet Total" :to="{name: 'wallet-total'}" exact />
+          <q-route-tab no-caps icon="fa fa-chart-line" label="Savings" :to="{name: 'savings'}" exact />
+          <q-route-tab no-caps icon="fa fa-chart-line" label="Plans" :to="{name: 'plans'}" exact />
           <q-route-tab no-caps icon="fa fa-chart-bar" label="Chart" to="#" exact disable />
           <q-route-tab no-caps icon="fa fa-cogs" label="Settings" to="#" exact disable />
         </q-tabs>
@@ -86,49 +89,64 @@ export default {
         {
           title: 'Home',
           icon: 'home',
-          link: '/analytics'
+          link: '/analytics',
+          disable: true
         },
         {
           title: 'Users',
           icon: 'ion-ios-people',
-          link: 'users'
+          link: 'users',
+          disable: false
         },
         {
           title: 'Bank Transactions',
           icon: 'account_balance',
-          link: '#'
+          link: '#',
+          disable: false
         },
         {
           title: 'Wallet Transaction',
           icon: 'fa fa-chart-line',
-          link: '#'
+          link: '#',
+          disable: false
+        },
+        {
+          title: 'Wallet Total',
+          icon: 'fa fa-chart-line',
+          link: 'wallet-total',
+          disable: false
         },
         {
           title: 'Chart',
           icon: 'fa fa-chart-bar',
-          link: '#'
+          link: '#',
+          disable: false
         },
         {
           title: 'settings',
           icon: 'fa fa-cogs',
-          link: '#'
+          link: '#',
+          disable: false
         },
         {
           title: 'CMS',
           icon: 'ion-create',
-          link: '/cms'
+          link: '/cms',
+          disable: false
         },
       ],
       leftBar: [
         {
           title: 'CMS',
           icon: 'ion-create',
-          link: 'cms'
+          link: 'cms',
+          disable: false
         },
         {
           title: 'Analytics',
           icon: 'ion-pulse',
-          link: '/analytics'
+          link: '/analytics',
+          disable: false
         },
       ]
     }

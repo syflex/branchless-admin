@@ -1,0 +1,1314 @@
+{
+	"info": {
+		"_postman_id": "da73da50-4009-4c16-8e16-49e75a8177a0",
+		"name": "Branpos",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "admin login",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"phone\": \"7031888216\",\n\t\"pin\":\"12345\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{route}}admin/login",
+					"host": [
+						"{{route}}admin"
+					],
+					"path": [
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "admin find user",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "{{admintoken}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"phone\": \"7031888216\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{route}}admin/findUser",
+					"host": [
+						"{{route}}admin"
+					],
+					"path": [
+						"findUser"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "admin get all users",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"type": "text",
+						"value": "{{admintoken}}"
+					}
+				],
+				"url": {
+					"raw": "{{route}}admin/getAllUsers",
+					"host": [
+						"{{route}}admin"
+					],
+					"path": [
+						"getAllUsers"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "admin get all user tran",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"type": "text",
+						"value": "{{admintoken}}"
+					}
+				],
+				"url": {
+					"raw": "{{route}}admin/getWalletTrans",
+					"host": [
+						"{{route}}admin"
+					],
+					"path": [
+						"getWalletTrans"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "admin get all bank tran",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"type": "text",
+						"value": "{{admintoken}}"
+					}
+				],
+				"url": {
+					"raw": "{{route}}admin/getBankTrans",
+					"host": [
+						"{{route}}admin"
+					],
+					"path": [
+						"getBankTrans"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "admin disable user",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"type": "text",
+						"value": "{{admintoken}}"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"phone\": \"7031888216\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{route}}admin/disableUser",
+					"host": [
+						"{{route}}admin"
+					],
+					"path": [
+						"disableUser"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "admin enable user",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"type": "text",
+						"value": "{{admintoken}}"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"phone\": \"7031888216\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{route}}admin/enableUser",
+					"host": [
+						"{{route}}admin"
+					],
+					"path": [
+						"enableUser"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "admin username",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"type": "text",
+						"value": "{{admintoken}}"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"phone\": \"7031888216\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{route}}admin/userName",
+					"host": [
+						"{{route}}admin"
+					],
+					"path": [
+						"userName"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "admin user walletBalance",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"type": "text",
+						"value": "{{admintoken}}"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"phone\": \"7031888216\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{route}}admin/walletBalance",
+					"host": [
+						"{{route}}admin"
+					],
+					"path": [
+						"walletBalance"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "admin user to agent",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"type": "text",
+						"value": "{{admintoken}}"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"phone\": \"7031888216\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{route}}admin/userToAgent",
+					"host": [
+						"{{route}}admin"
+					],
+					"path": [
+						"userToAgent"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "admin count users",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"type": "text",
+						"value": "{{admintoken}}"
+					}
+				],
+				"url": {
+					"raw": "{{route}}admin/countUsers",
+					"host": [
+						"{{route}}admin"
+					],
+					"path": [
+						"countUsers"
+					]
+				}
+			},
+			"response": []
+    },
+    
+		{
+			"name": "admin wallet total",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"type": "text",
+						"value": "{{admintoken}}"
+					}
+				],
+				"url": {
+					"raw": "{{route}}admin/walletTotal",
+					"host": [
+						"{{route}}admin"
+					],
+					"path": [
+						"walletTotal"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "admin get user savings",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"type": "text",
+						"value": "{{admintoken}}"
+					}
+				],
+				"url": {
+					"raw": "{{route}}admin/getSavings",
+					"host": [
+						"{{route}}admin"
+					],
+					"path": [
+						"getSavings"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "admin get subscription plans",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"type": "text",
+						"value": "{{admintoken}}"
+					}
+				],
+				"url": {
+					"raw": "{{route}}admin/getPlans",
+					"host": [
+						"{{route}}admin"
+					],
+					"path": [
+						"getPlans"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "admin create subscription plan",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"type": "text",
+						"value": "{{admintoken}}"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"amount\":\"10\",\n\t\"name\":\"test2\",\n\t\"interval\":\"daily\",\n\t\"duration\":2\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{route}}admin/createPlan",
+					"host": [
+						"{{route}}admin"
+					],
+					"path": [
+						"createPlan"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "user signup",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"phone\":\"\",\n    \"pin\":\"\",\n    \"referrer\":\"\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{route}}user/signup",
+					"host": [
+						"{{route}}user"
+					],
+					"path": [
+						"signup"
+					]
+				},
+				"description": "Resp:\nerror;\nsuccess;\nexist;\nnot six;"
+			},
+			"response": []
+		},
+		{
+			"name": "user verify phone",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"phone\":\"\",\n    \"otp\":\"\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{route}}user/verify",
+					"host": [
+						"{{route}}user"
+					],
+					"path": [
+						"verify"
+					]
+				},
+				"description": "Resp:\nerror\nInvalid\nsuccess"
+			},
+			"response": []
+		},
+		{
+			"name": "user resend otp",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"phone\": \"\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{route}}user/resendOtp",
+					"host": [
+						"{{route}}user"
+					],
+					"path": [
+						"resendOtp"
+					]
+				},
+				"description": "Resp:\nerror\nsuccess\ninvalid"
+			},
+			"response": []
+		},
+		{
+			"name": "user login",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"phone\": \"7031888216\",\n\t\"pin\":\"028480\",\n\t\"version\":\"1.0\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{route}}user/login",
+					"host": [
+						"{{route}}user"
+					],
+					"path": [
+						"login"
+					]
+				},
+				"description": "Resp:\nerror\nAuth failed\nDisabled\nWrong Pin\nunverified\nnot exist\nV-error  // version not correct\n\n{\n    message: \"success\",\n    token: \"\",\n    data: \"\",\n    signup_status: \"\",\n}"
+			},
+			"response": []
+		},
+		{
+			"name": "init account activation charge",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"type": "text",
+						"value": "{{usertoken}}"
+					}
+				],
+				"url": {
+					"raw": "{{route}}user/initAccount",
+					"host": [
+						"{{route}}user"
+					],
+					"path": [
+						"initAccount"
+					]
+				},
+				"description": "resp:\nerror;\n\n{\n    message: \"success\",\n    data: {\n    phone: \"\",\n    amount: 0,\n    ref: \"\",\n          }"
+			},
+			"response": []
+		},
+		{
+			"name": "get username before wallet transaction",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"type": "text",
+						"value": "{{usertoken}}"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"phone\": \"\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{route}}user/userName",
+					"host": [
+						"{{route}}user"
+					],
+					"path": [
+						"userName"
+					]
+				},
+				"description": "Resp:\nerror;\nnot exist;\n\n{\n    message: \"success\",\n    name: \"\",\n      }"
+			},
+			"response": []
+		},
+		{
+			"name": "user  details",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "{{usertoken}}",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{route}}user/userDetails",
+					"host": [
+						"{{route}}user"
+					],
+					"path": [
+						"userDetails"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "user update details",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"type": "text",
+						"value": "{{usertoken}}"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"name\": \"\",\n\t\"gender\": \"\",\n\t\"date_of_birth\": \"\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{route}}user/updateUser",
+					"host": [
+						"{{route}}user"
+					],
+					"path": [
+						"updateUser"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "user add email",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"type": "text",
+						"value": "{{usertoken}}"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"email\": \"\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{route}}user/addEmail",
+					"host": [
+						"{{route}}user"
+					],
+					"path": [
+						"addEmail"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "user initialize wallet transfer",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"type": "text",
+						"value": "{{usertoken}}"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"reciever\": \"\",\n\t\"amount\": 0,\n\t\"name\":\"\"\n}\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{route}}user/initWallTrans",
+					"host": [
+						"{{route}}user"
+					],
+					"path": [
+						"initWallTrans"
+					]
+				},
+				"description": "resp:\nerror;\nInsufficient balance;\nphone error    // sender and reciever are the same\n\n{\n    message: \"success\",\n    ref: \"\",  // transaction ref for wallet transfer route\n    }"
+			},
+			"response": []
+		},
+		{
+			"name": "user wallet transfer",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"type": "text",
+						"value": "{{usertoken}}"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"ref\": \"\",\n\t\"pin\":\"\"\n}\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{route}}user/walletTransfer",
+					"host": [
+						"{{route}}user"
+					],
+					"path": [
+						"walletTransfer"
+					]
+				},
+				"description": "resp:\nerror;\nsuccess;\ninvalid  // pin incorrect"
+			},
+			"response": []
+		},
+		{
+			"name": "walletBalance",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "{{usertoken}}",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{route}}user/walletBalance",
+					"host": [
+						"{{route}}user"
+					],
+					"path": [
+						"walletBalance"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get bank codes",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"type": "text",
+						"value": "{{usertoken}}"
+					}
+				],
+				"url": {
+					"raw": "{{route}}user/getBanks",
+					"host": [
+						"{{route}}user"
+					],
+					"path": [
+						"getBanks"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "check Account details",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"type": "text",
+						"value": "{{usertoken}}"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"account\":\"\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{route}}user/checkAccount",
+					"host": [
+						"{{route}}user"
+					],
+					"path": [
+						"checkAccount"
+					]
+				},
+				"description": "user bank account details"
+			},
+			"response": []
+		},
+		{
+			"name": "user name",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"type": "text",
+						"value": "{{usertoken}}"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"account\":\"\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{route}}user/checkAccount",
+					"host": [
+						"{{route}}user"
+					],
+					"path": [
+						"checkAccount"
+					]
+				},
+				"description": "user bank account details"
+			},
+			"response": []
+		},
+		{
+			"name": "init bank transfer",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"type": "text",
+						"value": "{{usertoken}}"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"phone\":\"\",\n    \"amount\":\"\",\n    \"name\":\"\",\n    \"bankcode\":\"\",\n    \"acc_no\":\"\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{route}}user/initBankTrans",
+					"host": [
+						"{{route}}user"
+					],
+					"path": [
+						"initBankTrans"
+					]
+				},
+				"description": "Resp:\nerror;\nerror: Please try again later   // paystack issues;\nInsufficient balance;\nwrong amount     // amount must be btw 49000 and 100\n\n{\n    message: \"success\",\n    data: {\n        phone: \"\",\n        txRef: \"\",    // ref for bank transfer route\n    },\n    }"
+			},
+			"response": []
+		},
+		{
+			"name": "bank transfer",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"type": "text",
+						"value": "{{usertoken}}"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"ref\":\"\",\n    \"pin\":\"\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{route}}user/BankTrans",
+					"host": [
+						"{{route}}user"
+					],
+					"path": [
+						"BankTrans"
+					]
+				},
+				"description": "resp:\nerror;\ninvalid  // wrong pin;\nsuccess"
+			},
+			"response": []
+		},
+		{
+			"name": "init load wallet",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"type": "text",
+						"value": "{{usertoken}}"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"amount\":\"100\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{route}}user/initLoadWallet",
+					"host": [
+						"{{route}}user"
+					],
+					"path": [
+						"initLoadWallet"
+					]
+				},
+				"description": "load wallet with Rave\n\nResp:\nerror;\n\ndata to embed in Rave payment gateway\n{\n    message: \"success\",\n    data: {\n    phone: \"\",\n    amount: \"\",\n    ref: \"\", // use as transaction ref\n    },\n}"
+			},
+			"response": []
+		},
+		{
+			"name": "user payment plans",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"type": "text",
+						"value": "{{usertoken}}"
+					}
+				],
+				"url": {
+					"raw": "{{route}}user/getPlans",
+					"host": [
+						"{{route}}user"
+					],
+					"path": [
+						"getPlans"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "user init auto saving",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"type": "text",
+						"value": "{{usertoken}}"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"plan\":\"18979\",\n    \"duration\":\"2\",\n    \"total\":\"500\",\n    \"amount\":\"250\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{route}}user/initSavings",
+					"host": [
+						"{{route}}user"
+					],
+					"path": [
+						"initSavings"
+					]
+				},
+				"description": "fill with data from get plans route\n\nerror;\n\n{\n    message: \"success\",\n    data: {\n    plan: 0, // set as planID in rave payment gateway\n    amount: 0,\n    ref: \"\", // set as txRef\n    },\n}"
+			},
+			"response": []
+		},
+		{
+			"name": "user payment link",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"type": "text",
+						"value": "{{usertoken}}"
+					}
+				],
+				"url": {
+					"raw": "{{route}}user/paymentLink",
+					"host": [
+						"{{route}}user"
+					],
+					"path": [
+						"paymentLink"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "user refer link",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"type": "text",
+						"value": "{{usertoken}}"
+					}
+				],
+				"url": {
+					"raw": "{{route}}user/referLink",
+					"host": [
+						"{{route}}user"
+					],
+					"path": [
+						"referLink"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "user get savings",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"type": "text",
+						"value": "{{usertoken}}"
+					}
+				],
+				"url": {
+					"raw": "{{route}}user/getSavings",
+					"host": [
+						"{{route}}user"
+					],
+					"path": [
+						"getSavings"
+					]
+				},
+				"description": "get user plans"
+			},
+			"response": []
+		},
+		{
+			"name": "user fetchTran",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"type": "text",
+						"value": "{{usertoken}}"
+					}
+				],
+				"url": {
+					"raw": "{{route}}user/fetchTran?first=2019-07-13&last=2019-07-15",
+					"host": [
+						"{{route}}user"
+					],
+					"path": [
+						"fetchTran"
+					],
+					"query": [
+						{
+							"key": "first",
+							"value": "2019-07-13"
+						},
+						{
+							"key": "last",
+							"value": "2019-07-15"
+						}
+					]
+				},
+				"description": "get user plans"
+			},
+			"response": []
+		},
+		{
+			"name": "user fetchBankTran",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"type": "text",
+						"value": "{{usertoken}}"
+					}
+				],
+				"url": {
+					"raw": "{{route}}user/fetchBankTran?first=2019-07-13&last=2019-07-15",
+					"host": [
+						"{{route}}user"
+					],
+					"path": [
+						"fetchBankTran"
+					],
+					"query": [
+						{
+							"key": "first",
+							"value": "2019-07-13"
+						},
+						{
+							"key": "last",
+							"value": "2019-07-15"
+						}
+					]
+				},
+				"description": "get user plans"
+			},
+			"response": []
+		},
+		{
+			"name": "user redeem savings",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"type": "text",
+						"value": "{{usertoken}}"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"id\":\"\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{route}}user/redeemSavings",
+					"host": [
+						"{{route}}user"
+					],
+					"path": [
+						"redeemSavings"
+					]
+				},
+				"description": "when a plan completes transfer money to wallet"
+			},
+			"response": []
+		},
+		{
+			"name": "user cancel savings",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"type": "text",
+						"value": "{{usertoken}}"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"id\":\"\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{route}}user/cancelSavings",
+					"host": [
+						"{{route}}user"
+					],
+					"path": [
+						"cancelSavings"
+					]
+				},
+				"description": "resp:\nsuccess\nerror"
+			},
+			"response": []
+		},
+		{
+			"name": "user forgot pin",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "{{usertoken}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"phone\": \"7031888216\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{route}}user/forgotPin",
+					"host": [
+						"{{route}}user"
+					],
+					"path": [
+						"forgotPin"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "user change pin",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"type": "text",
+						"value": "{{usertoken}}"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"pin\": \"495040\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{route}}user/changePin",
+					"host": [
+						"{{route}}user"
+					],
+					"path": [
+						"changePin"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"id": "28fa5142-df8f-4b73-ba0b-ef212a298b5a",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"id": "8a070afd-bc2a-4ca9-bcc1-7ac5fb9dcfc9",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"id": "4aaa2935-4262-406c-a263-61bc3ad058ef",
+			"key": "route",
+			"value": "https://branchless.world/branposdev01/"
+		},
+		{
+			"id": "5ca9cf93-437b-4749-b712-b65027a83a0b",
+			"key": "usertoken",
+			"value": ""
+		},
+		{
+			"id": "0b5d45f3-2562-4b11-9aa4-677687ba6910",
+			"key": "admintoken",
+			"value": ""
+		}
+	],
+	"protocolProfileBehavior": {}
+}

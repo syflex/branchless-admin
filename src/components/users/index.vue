@@ -62,8 +62,8 @@
                 </template>
               </q-btn>
 
-              <q-btn size="sm" no-caps color="secondary" @click="makeAgent(props.row.phone)" :loading="loading == props.row.phone ? true : false" :disable="props.row.agent ? true : false">
-                Make Agent
+              <q-btn size="sm" no-caps :color="props.row.agent ? 'primary' : 'secondary'" @click="agentFunc(props.row.phone, props.row.agent)" :loading="loading == props.row.phone ? true : false">
+               {{ props.row.agent ? 'Make User' :  'Make Agent' }}
                 <template v-slot:loading>
                   <div class="text-italic">
                       <q-spinner-oval /> Loading...
@@ -125,13 +125,28 @@ export default {
       return date.formatDate(data, 'YYYY-MM-DD')
     },
 
-    async makeAgent(phone){
+    
+
+    agentFunc(phone, isAgent){
+        if (isAgent) {
+          const endPoint = 'agentToUser';
+          const message = 'User';
+          this.makeAgent(phone, endPoint, message);
+        }else{
+          const endPoint = 'userToAgent';
+          const message = 'Agent';
+          this.makeAgent(phone, endPoint, message);
+        }
+
+    },
+
+    async makeAgent(phone, endPoint, message){
       this.loading = phone;
       try {
-        const response = await this.$axios.post(process.env.Api + '/admin/userToAgent', { phone: phone });
+        const response = await this.$axios.post(process.env.Api + '/admin/'+endPoint, { phone: phone });
         const data = await response.data;
         this.$store.dispatch('DataAuth/getUsers');
-        this.$q.notify({ color: 'primary', message: data.message + ': User Converted to Agent', icon: 'info'})
+        this.$q.notify({ color: 'primary', message: data.message + ': User Converted to '+message, icon: 'info'})
         this.loading = false
       } catch (error) {
         this.loading = false

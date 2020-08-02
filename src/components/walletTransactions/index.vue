@@ -17,14 +17,14 @@
         <template v-slot:body="props">
         <q-tr :props="props">
           <q-td key="name" :props="props">
-            {{ props.row.name }}
+            {{ getUsername(props.row.phone) }}
           </q-td>
           <q-td key="phone" :props="props">
               {{ props.row.phone }}
           </q-td>
           <q-td key="amount" :props="props">
             <q-badge color="negative" class="text-bold">
-              {{ props.row.amount }}
+              {{ currencyFormat(props.row.amount) }}
             </q-badge>
           </q-td>
           <q-td key="reciever" :props="props" class="text-bold">
@@ -42,7 +42,7 @@
               {{ formatDate(props.row.createdAt) }}
           </q-td>
           <q-td key="action" :props="props" class="q-gutter-xs">
-               <q-btn size="sm" no-caps color="negative" label="Revert" />
+               <q-btn size="sm" no-caps color="negative" label="Revert" disable=""/>
           </q-td>
         </q-tr>
         </template>
@@ -87,6 +87,23 @@ export default {
     formatDate(data){
       return date.formatDate(data, 'YYYY-MM-DD')
     },
+
+    currencyFormat(amount){
+      // Create our number formatter.
+      const formatter = new Intl.NumberFormat('en-US', {
+        style: 'currency',
+        currency: 'NGN',
+      });
+
+      return formatter.format(amount); /* $2,500.00 */
+    },
+
+    async getUsername(phone){
+        const response = await this.$axios.post(process.env.Api + '/admin/userName', { phone: phone })
+        const data = response.data;
+        const name = data.name;
+        return name
+    }
   },
 }
 </script>

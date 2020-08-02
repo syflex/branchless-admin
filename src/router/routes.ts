@@ -11,6 +11,9 @@ const routes: RouteConfig[] = [
       { path: 'analytics/user/:phone', name: 'user-details', component: () => import('pages/Users.vue') },
       { path: 'analytics/bank-transaction', name: 'bank-transaction', component: () => import('pages/BankTransactions.vue') },
       { path: 'analytics/wallet-transaction', name: 'wallet-transaction', component: () => import('pages/WalletTransactions.vue') },
+      { path: 'analytics/wallet-total', name: 'wallet-total', component: () => import('pages/WalletTotal.vue') },
+      { path: 'analytics/savings', name: 'savings', component: () => import('pages/Savings.vue') },
+      { path: 'analytics/plans', name: 'plans', component: () => import('pages/Plans.vue') },
       { path: 'cms', name: 'cms', component: () => import('pages/CMS.vue') },
   ]
   }
