@@ -47,7 +47,9 @@
       </q-field>
       <q-field dense color="black" bg-color="white" outlined label="Status" stack-label class="col-xs-12 col-sm-6 col-md-3  q-pa-xs">
         <template v-slot:control>
-          <div class="self-center full-width no-outline" tabindex="0">{{ user[0].status }}</div>
+          <div class="self-center full-width no-outline" tabindex="0">
+            <q-badge :color="user[0].status === 'active' ? 'primary' : 'negative'" :label="user[0].status" />
+          </div>
         </template>
       </q-field>
       <q-field dense color="black" bg-color="white" outlined label="Agent" stack-label class="col-xs-12 col-sm-6 col-md-3  q-pa-xs">
