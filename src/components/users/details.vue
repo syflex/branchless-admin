@@ -7,6 +7,11 @@
           <div class="self-center full-width no-outline" tabindex="0">{{ user[0].name }}</div>
         </template>
       </q-field>
+      <q-field dense color="black" bg-color="white" outlined label="Wallet Balance" stack-label>
+        <template v-slot:control>
+          <div class="self-center full-width no-outline" tabindex="0">{{ userWallet.data.balance }}</div>
+        </template>
+      </q-field>
       <q-field dense color="black" bg-color="white" outlined label="Phone Number" stack-label>
         <template v-slot:control>
           <div class="self-center full-width no-outline" tabindex="0">{{ user[0].phone }}</div>
@@ -75,17 +80,20 @@
       </q-field>
 
     </div>
-    <!-- {{userWallet}}
-    {{userSavings}}
-    {{userWalletTrans}}
-    {{userBankTrans}} -->
+
+    <savingsConp v-if="userSavings.data.length"  :savings="userSavings.data" />
+    <walletComp :walletTrans="userWalletTrans.data" />
+    <!-- {{userBankTrans}} -->
   </div>
 </template>
 
 <script>
-import { date } from 'quasar'
+// import { date } from 'quasar'
+import savingsConp from './partials/savings'
+import walletComp from './partials/walletTrans'
 export default {
   // name: 'ComponentName',
+  components:{savingsConp,walletComp},
   data () {
     return {
       user: '',
