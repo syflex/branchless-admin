@@ -83,7 +83,7 @@
 
     <savingsConp v-if="userSavings.data.length"  :savings="userSavings.data" />
     <walletComp :walletTrans="userWalletTrans.data" />
-    {{userBankTrans}}
+    {{userBankTrans.data}}
   </div>
 </template>
 
