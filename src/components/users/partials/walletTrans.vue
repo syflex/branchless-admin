@@ -17,7 +17,7 @@
         <template v-slot:body="props">
         <q-tr :props="props">
           <q-td key="name" :props="props">
-            {{ getName(props.row.phone) }}
+            {{ name }}
           </q-td>
           <q-td key="phone" :props="props">
               {{ props.row.phone }}
@@ -54,7 +54,7 @@
 import { date } from 'quasar'
 export default {
   // name: 'ComponentName',
-  props:['walletTrans'],
+  props:['walletTrans','name'],
   data () {
     return {
       filter: '',

@@ -9,7 +9,7 @@
       </q-field>
       <q-field dense color="black" bg-color="white" outlined label="Wallet Balance" stack-label class="col-xs-12 col-sm-6 col-md-3  q-pa-xs">
         <template v-slot:control>
-          <div class="self-center full-width no-outline" tabindex="0">{{ userWallet.data.balance }}</div>
+          <div class="self-center full-width no-outline" tabindex="0">{{ userWallet ? userWallet.data.balane : 'server error'  }}</div>
         </template>
       </q-field>
       <q-field dense color="black" bg-color="white" outlined label="Phone Number" stack-label class="col-xs-12 col-sm-6 col-md-3  q-pa-xs">
@@ -29,7 +29,7 @@
       </q-field>
       <q-field dense color="black" bg-color="white" outlined label="Date Of Birth" stack-label class="col-xs-12 col-sm-6 col-md-3  q-pa-xs">
         <template v-slot:control>
-          <div class="self-center full-width no-outline" tabindex="0">{{ user[0].date_of_birth }}</div>
+          <div class="self-center full-width no-outline" tabindex="0">{{ formatDate(user[0].date_of_birth) }}</div>
         </template>
       </q-field>
 
@@ -40,7 +40,9 @@
       </q-field>
       <q-field dense color="black" bg-color="white" outlined label="Verified" stack-label class="col-xs-12 col-sm-6 col-md-3  q-pa-xs">
         <template v-slot:control>
-          <div class="self-center full-width no-outline" tabindex="0">{{ user[0].verified }}</div>
+          <div class="self-center full-width no-outline" tabindex="0">
+            <q-badge :color="user[0].verified ? 'primary' : 'negative'" text-color="black" :label="user[0].verified ? 'verified' : 'Unverified'" />
+          </div>
         </template>
       </q-field>
       <q-field dense color="black" bg-color="white" outlined label="Status" stack-label class="col-xs-12 col-sm-6 col-md-3  q-pa-xs">
@@ -70,26 +72,26 @@
       </q-field>
       <q-field dense color="black" bg-color="white" outlined label="Date Created" stack-label class="col-xs-12 col-sm-6 col-md-3  q-pa-xs">
         <template v-slot:control>
-          <div class="self-center full-width no-outline" tabindex="0">{{ user[0].createdAt }}</div>
+          <div class="self-center full-width no-outline" tabindex="0">{{ formatDate(user[0].createdAt) }}</div>
         </template>
       </q-field>
       <q-field dense color="black" bg-color="white" outlined label="Date Updated" stack-label class="col-xs-12 col-sm-6 col-md-3  q-pa-xs">
         <template v-slot:control>
-          <div class="self-center full-width no-outline" tabindex="0">{{ user[0].updatedAt }}</div>
+          <div class="self-center full-width no-outline" tabindex="0">{{ formatDate(user[0].updatedAt) }}</div>
         </template>
       </q-field>
 
     </div>
 
-    <savingsConp v-if="userSavings.data.length"  :savings="userSavings.data" class="q-mb-sm"/>
+    <savingsConp v-if="userSavings.data.length"  :savings="userSavings.data" :name="user[0].name" class="q-mb-sm"/>
 
-    <walletComp v-if="userWalletTrans.data.length" :walletTrans="userWalletTrans.data" class="q-mb-sm"/>
-    <bankComp v-if="userBankTrans.data.length" :bankTrans="userBankTrans.data" class="q-mb-sm"/>
+    <walletComp v-if="userWalletTrans.data.length" :walletTrans="userWalletTrans.data" :name="user[0].name" class="q-mb-sm"/>
+    <bankComp v-if="userBankTrans.data.length" :bankTrans="userBankTrans.data" :name="user[0].name" class="q-mb-sm"/>
   </div>
 </template>
 
 <script>
-// import { date } from 'quasar'
+import { date } from 'quasar'
 import savingsConp from './partials/savings'
 import walletComp from './partials/walletTrans'
 import bankComp from './partials/bankTrans'
@@ -115,6 +117,9 @@ export default {
   },
 
   methods: {
+    formatDate(data){
+      return date.formatDate(data, 'YYYY-MM-DD')
+    },
     async getUser(phone){
       this.loading = phone;
       try {
