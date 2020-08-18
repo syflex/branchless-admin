@@ -41,7 +41,7 @@
       <q-field dense color="black" bg-color="white" outlined label="Verified" stack-label class="col-xs-12 col-sm-6 col-md-3  q-pa-xs">
         <template v-slot:control>
           <div class="self-center full-width no-outline" tabindex="0">
-            <q-badge :color="user[0].verified ? 'primary' : 'negative'" text-color="black" :label="user[0].verified ? 'verified' : 'Unverified'" />
+            <q-badge :color="user[0].verified ? 'primary' : 'negative'" :label="user[0].verified ? 'verified' : 'Unverified'" />
           </div>
         </template>
       </q-field>
@@ -52,12 +52,17 @@
       </q-field>
       <q-field dense color="black" bg-color="white" outlined label="Agent" stack-label class="col-xs-12 col-sm-6 col-md-3  q-pa-xs">
         <template v-slot:control>
-          <div class="self-center full-width no-outline" tabindex="0">{{ user[0].agent }}</div>
+          <div class="self-center full-width no-outline" tabindex="0">
+            <q-badge :color="user[0].agent ? 'primary' : 'secondary'"  :label="user[0].agent ? 'Agent' : 'None Agent'" />
+          </div>
         </template>
       </q-field>
       <q-field dense color="black" bg-color="white" outlined label="Subscribed" stack-label class="col-xs-12 col-sm-6 col-md-3  q-pa-xs">
         <template v-slot:control>
-          <div class="self-center full-width no-outline" tabindex="0">{{ user[0].subscribed }}</div>
+          <div class="self-center full-width no-outline" tabindex="0">
+            <q-badge :color="user[0].subscribed ? 'primary' : 'negative'" :label="user[0].subscribed ? 'Subscriber' : 'None Subscriber'" />
+
+          </div>
         </template>
       </q-field>
       <q-field dense color="black" bg-color="white" outlined label="Due Date" stack-label class="col-xs-12 col-sm-6 col-md-3  q-pa-xs">
