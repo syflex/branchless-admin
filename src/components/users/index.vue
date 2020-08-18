@@ -22,9 +22,9 @@
           <q-td key="email" :props="props">
               {{ props.row.email }}
           </q-td>
-          <!-- <q-td key="location" :props="props">
+          <q-td key="location" :props="props">
               {{ props.row.location }}
-          </q-td> -->
+          </q-td>
           <q-td key="gender" :props="props">
               {{ props.row.gender }}
           </q-td>
@@ -101,7 +101,7 @@ export default {
         },
         { name: 'phone', align: 'center', label: 'Phone', field: 'phone', sortable: true },
         { name: 'email', label: 'Email', field: 'email', sortable: true },
-        // { name: 'location', label: 'Location', field: 'location', sortable: true },
+        { name: 'location', label: 'Location', field: 'location', sortable: true },
         { name: 'gender', label: 'Gender', field: 'gender' },
         { name: 'verified', label: 'Verified', field: 'verified' },
         { name: 'status', label: 'Status', field: 'status', sortable: true },
@@ -125,7 +125,7 @@ export default {
       return date.formatDate(data, 'YYYY-MM-DD')
     },
 
-    
+
 
     agentFunc(phone, isAgent){
         if (isAgent) {

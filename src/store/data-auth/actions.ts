@@ -36,6 +36,20 @@ const actions: ActionTree<DataAuthStateInterface, StoreInterface> = {
     });
   },
 
+  async getUsername ({ commit }) {
+    return await new Promise((resolve, reject) => {
+      axios.post(process.env.Api + '/admin/userName')
+      .then(response => {
+        commit('users', { data: response.data });
+        resolve(response);
+        })
+        .catch(err => {
+          commit('logout');
+          reject(err);
+        });
+    });
+  },
+
   async getBankTrans ({ commit }) {
     return await new Promise((resolve, reject) => {
       axios.get(process.env.Api + '/admin/getBankTrans')

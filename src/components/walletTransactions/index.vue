@@ -17,14 +17,14 @@
         <template v-slot:body="props">
         <q-tr :props="props">
           <q-td key="name" :props="props">
-            {{ getUsername(props.row.phone) }}
+            {{ getName(props.row.phone) }}
           </q-td>
           <q-td key="phone" :props="props">
               {{ props.row.phone }}
           </q-td>
           <q-td key="amount" :props="props">
             <q-badge color="negative" class="text-bold">
-              {{ currencyFormat(props.row.amount) }}
+              {{ currencyFormat((props.row.amount/100)) }}
             </q-badge>
           </q-td>
           <q-td key="reciever" :props="props" class="text-bold">
@@ -57,6 +57,7 @@ export default {
   data () {
     return {
       filter: '',
+      username: '',
       columns: [
         {
           name: 'name',
@@ -98,11 +99,21 @@ export default {
       return formatter.format(amount); /* $2,500.00 */
     },
 
+    getName(phone){
+      const name = this.getUsername(phone)
+      console.log(name);
+    },
+
     async getUsername(phone){
-        const response = await this.$axios.post(process.env.Api + '/admin/userName', { phone: phone })
-        const data = response.data;
-        const name = data.name;
-        return name
+       return await new Promise((resolve, reject) => {
+        this.$axios.post(process.env.Api + '/admin/userName', { phone: phone })
+        .then(response => {
+          resolve(response);
+          })
+          .catch(err => {
+            reject(err);
+          });
+      });
     }
   },
 }
