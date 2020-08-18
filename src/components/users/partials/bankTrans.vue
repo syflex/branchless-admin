@@ -57,6 +57,7 @@
 import { date } from 'quasar'
 export default {
   // name: 'ComponentName',
+  props:['bankTrans'],
   data () {
     return {
       filter: '',

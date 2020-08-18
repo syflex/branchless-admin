@@ -81,9 +81,10 @@
 
     </div>
 
-    <savingsConp v-if="userSavings.data.length"  :savings="userSavings.data" />
-    <walletComp :walletTrans="userWalletTrans.data" />
-    {{userBankTrans.data}}
+    <savingsConp v-if="userSavings.data.length"  :savings="userSavings.data" class="q-mb-sm"/>
+
+    <walletComp :walletTrans="userWalletTrans.data" class="q-mb-sm"/>
+    <bankComp :bankTrans="userBankTrans.data" class="q-mb-sm"/>
   </div>
 </template>
 
@@ -91,9 +92,10 @@
 // import { date } from 'quasar'
 import savingsConp from './partials/savings'
 import walletComp from './partials/walletTrans'
+import bankComp from './partials/bankTrans'
 export default {
   // name: 'ComponentName',
-  components:{savingsConp,walletComp},
+  components:{savingsConp,walletComp,bankComp},
   data () {
     return {
       user: '',
