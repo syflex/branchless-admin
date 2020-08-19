@@ -9,7 +9,7 @@
       </q-field>
       <q-field dense color="black" bg-color="white" outlined label="Wallet Balance" stack-label class="col-xs-12 col-sm-6 col-md-3  q-pa-xs">
         <template v-slot:control>
-          <div class="self-center full-width no-outline" tabindex="0">{{ userWallet ? userWallet.data.balane : 'server error'  }}</div>
+          <div class="self-center full-width no-outline" tabindex="0">{{ userWallet ? currencyFormat(userWallet.data.balance) : 'server error'  }}</div>
         </template>
       </q-field>
       <q-field dense color="black" bg-color="white" outlined label="Phone Number" stack-label class="col-xs-12 col-sm-6 col-md-3  q-pa-xs">
@@ -127,6 +127,15 @@ export default {
     formatDate(data){
       return date.formatDate(data, 'YYYY-MM-DD')
     },
+    currencyFormat(amount){
+      // Create our number formatter.
+      const formatter = new Intl.NumberFormat('en-US', {
+        style: 'currency',
+        currency: 'NGN',
+      });
+
+      return formatter.format(amount); /* $2,500.00 */
+    },
     async getUser(phone){
       this.loading = phone;
       try {
@@ -141,7 +150,7 @@ export default {
     async getUserWallet(phone){
       this.loading = phone;
       try {
-        const response = await this.$axios.get(process.env.Api + '/admin/walletBalance?phone='+ phone);
+        const response = await this.$axios.post(process.env.Api + '/admin/userBalance', {phone: phone});
         const data = response.data;
         this.userWallet = data
       } catch (error) {
