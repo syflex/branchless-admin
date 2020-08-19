@@ -38,7 +38,7 @@
           </q-td>
            <q-td key="charge" :props="props">
             <q-badge color="negative" class="text-bold">
-              {{ currencyFormat(props.row.charge) }}
+              {{ currencyFormat(props.row.charge/100) }}
             </q-badge>
           </q-td>
           <q-td key="createdAt" :props="props">
