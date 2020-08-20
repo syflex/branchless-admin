@@ -99,7 +99,7 @@ export default {
         currency: 'NGN',
       });
 
-      return formatter.format(amount); /* $2,500.00 */
+      return formatter.format(amount); /* NGN 2,500.00 */
     },
   },
 }
