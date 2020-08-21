@@ -7,15 +7,16 @@
       >
         <q-card-section class="column flex-center">
           <div class="text-h6 text-bold">
-            <span class="text-caption text-grey-8">total</span>
-            {{ bankTrans ? bankTrans.length : 0 }} | {{ sortToday(bankTrans, {field: 'createdAt', value: ''}).length }}
-            <span class="text-caption text-grey-8">today</span>
-            <!-- <q-icon name="fa fa-chart-line" /> -->
+             <span class="text-caption text-grey-8">{{filter && filter.value ? 'Previous ' + getFilterLabel() : 'total'}}</span>
+            {{ leftFunc({ field: 'createdAt', value: '' }, false) }}
+            |
+            {{ rightFunc( {field: 'createdAt', value: ''}, false) }}
+            <span class="text-caption text-grey-8">{{filter && filter.value ? 'this ' + getFilterLabel() : 'today'}}</span>
           </div>
-          <div class="text-bold row flex-center">
+          <!-- <div class="text-bold row flex-center">
             <q-icon name="fa fa-piggy-bank" class="q-mr-md" />
             <div>Bank Transactions</div>
-          </div>
+          </div> -->
         </q-card-section>
 
         <q-separator color="teal-10" />
@@ -24,12 +25,18 @@
           <div class="text-center">
             <div>Success</div>
             <div>
-              {{ sortGeneralField(bankTrans, 'status', 'success') }} | {{ sortToday(bankTrans, {field: 'createdAt', value: ''}, {field: 'status', value: 'success'}).length }}
+              {{ leftFunc({field: 'createdAt', value: ''},{field: 'status', value: 'success'} ) }}
+              |
+              {{ rightFunc({field: 'createdAt', value: ''}, {field: 'status', value: 'success'}) }}
             </div>
           </div>
           <div class="text-center">
             <div>Failed</div>
-            <div>{{ sortGeneralField(bankTrans, 'status', 'pending') }} | {{ sortToday(bankTrans, {field: 'createdAt', value: ''}, {field: 'status', value: 'pending'}).length }}</div>
+            <div>
+              {{ leftFunc({field: 'createdAt', value: ''}, {field: 'status', value: 'pending'}) }}
+              |
+              {{ rightFunc({field: 'createdAt', value: ''}, {field: 'status', value: 'pending'}) }}
+            </div>
           </div>
         </q-card-section>
 
@@ -37,16 +44,21 @@
           <div class="text-center">
             <div>Credit</div>
             <div>
-              {{ sortGeneralField(bankTrans, 'type', 'credit') }} | {{ sortToday(bankTrans, {field: 'createdAt', value: ''}, {field: 'type', value: 'credit'}).length }}
+              {{ leftFunc({field: 'createdAt', value: ''}, {field: 'type', value: 'credit'}) }}
+              |
+              {{ rightFunc({field: 'createdAt', value: ''}, {field: 'type', value: 'credit'}) }}
             </div>
           </div>
           <div class="text-center">
             <div>Debits</div>
             <div>
-              {{ sortGeneralField(bankTrans, 'type', 'debit') }} | {{ sortToday(bankTrans, {field: 'createdAt', value: ''}, {field: 'type', value: 'debit'}).length }}
+              {{ leftFunc({field: 'createdAt', value: ''}, {field: 'type', value: 'debit'}) }}
+              |
+              {{ rightFunc({field: 'createdAt', value: ''}, {field: 'type', value: 'debit'}) }}
             </div>
           </div>
         </q-card-section>
+
       </q-card>
   </div>
 </template>
@@ -54,12 +66,69 @@
 <script>
 import mixins from 'components/mixin/mixins'
 export default {
+   props:['filter'],
+
   mixins: [mixins],
 
   computed: {
     bankTrans() {
       return this.$store.getters['DataAuth/bankTrans'];
     },
+  },
+
+
+  methods: {
+    getFilterLabel(){
+      const filter = this.filter;
+      if (filter) {
+         if(filter.value == 'day'||filter.value == 'week'||filter.value == 'month'||filter.value == 'year'){
+            return filter.value;
+          }else if(filter.value == 'quaterly'){
+            return 'quater'
+          }
+      }
+
+    },
+
+    // 1: data, 2:query1, 3:query2, 4:filter
+    leftFunc(query1, query2){
+      const data = this.$store.getters['DataAuth/bankTrans'];
+      const filter = this.filter;
+
+      if(filter && filter.value == 'day' && filter.type == 'base'){
+        return this.sortToday(data, query1, query2, 'previous').length
+      }else if(filter && filter.value == 'week' && filter.type == 'base'){
+        return this.sortWeek(data, query1, query2, 'previous').length
+      }else if(filter && filter.value == 'month' && filter.type == 'base'){
+        return this.sortMonth(data, query1, query2, 'previous').length
+      }else if(filter && filter.value == 'quaterly' && filter.type == 'base'){
+        return this.sortQuarter(data, query1, query2, 'previous').length
+      }else if(filter && filter.value == 'year' && filter.type == 'base'){
+        return this.sortYear(data, query1, query2, 'previous').length
+      }else{
+        return this.sortGeneralField(data, query1, query2).length
+      }
+    },
+
+    rightFunc(query1, query2){
+       const data = this.$store.getters['DataAuth/bankTrans'];
+      const filter = this.filter;
+
+      if(filter && filter.value == 'day' && filter.type == 'base'){
+        return this.sortToday(data, query1, query2, 'current').length
+      }else if(filter && filter.value == 'week' && filter.type == 'base'){
+        return this.sortWeek(data, query1, query2, 'current').length
+      }else if(filter && filter.value == 'month' && filter.type == 'base'){
+        return this.sortMonth(data, query1, query2, 'current').length
+      }else if(filter && filter.value == 'quaterly' && filter.type == 'base'){
+        return this.sortQuarter(data, query1, query2, 'current').length
+      }else if(filter && filter.value == 'year' && filter.type == 'base'){
+        return this.sortYear(data, query1, query2, 'current').length
+      }else{
+        return this.sortToday(data, query1, query2, 'current').length
+      }
+    }
+
   },
 
 }

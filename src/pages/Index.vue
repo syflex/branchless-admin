@@ -10,7 +10,7 @@
     </div>
 
     <div class="col-md-3 col-xs-12 q-pa-sm">
-      <!-- <bankTransfer /> -->
+      <bankTransfer />
     </div>
 
     <div class="col-md-3 col-xs-12 q-pa-sm">
@@ -21,11 +21,11 @@
 
 <script>
 import user from 'components/cards/user'
-// import bankTransfer from 'components/cards/bankTransfer'
+import bankTransfer from 'components/cards/bankTransfer'
 // import walletTransfer from 'components/cards/walletTransfer'
 export default {
   name: 'PageIndex',
-  components:{ user },
+  components:{ user,bankTransfer },
 
   data() {
     return {
