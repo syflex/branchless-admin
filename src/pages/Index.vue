@@ -10,11 +10,11 @@
     </div>
 
     <div class="col-md-3 col-xs-12 q-pa-sm">
-      <bankTransfer />
+      <!-- <bankTransfer /> -->
     </div>
 
     <div class="col-md-3 col-xs-12 q-pa-sm">
-      <walletTransfer />
+      <!-- <walletTransfer /> -->
     </div>
   </q-page>
 </template>
