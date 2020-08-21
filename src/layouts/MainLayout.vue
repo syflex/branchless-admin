@@ -89,7 +89,7 @@ export default {
         {
           title: 'Home',
           icon: 'home',
-          link: '/analytics',
+          link: 'analytics',
           disable: false
         },
         {
@@ -128,24 +128,24 @@ export default {
           link: 'plans',
           disable: false
         },
-        {
-          title: 'Chart',
-          icon: 'fa fa-chart-bar',
-          link: '#',
-          disable: true
-        },
-        {
-          title: 'settings',
-          icon: 'fa fa-cogs',
-          link: '#',
-          disable: true
-        },
-        {
-          title: 'CMS',
-          icon: 'ion-create',
-          link: '/cms',
-          disable: true
-        },
+        // {
+        //   title: 'Chart',
+        //   icon: 'fa fa-chart-bar',
+        //   link: '#',
+        //   disable: true
+        // },
+        // {
+        //   title: 'settings',
+        //   icon: 'fa fa-cogs',
+        //   link: '#',
+        //   disable: true
+        // },
+        // {
+        //   title: 'CMS',
+        //   icon: 'ion-create',
+        //   link: '/cms',
+        //   disable: true
+        // },
       ],
       leftBar: [
         {

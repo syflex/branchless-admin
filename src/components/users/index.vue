@@ -70,6 +70,15 @@
                   </div>
                 </template>
               </q-btn>
+
+               <q-btn size="sm" no-caps :color="'negative'" @click="deleteEmail(props.row.phone)" :loading="loading2 == props.row.phone ? true : false">
+               {{ 'Delete Email' }}
+                <template v-slot:loading>
+                  <div class="text-italic">
+                      <q-spinner-oval /> Deleting email...
+                  </div>
+                </template>
+              </q-btn>
           </q-td>
 
         </q-tr>
@@ -89,6 +98,7 @@ export default {
       filter: '',
       loading: false,
       loading1: false,
+      loading2: false,
       columns: [
         {
           name: 'name',
@@ -165,6 +175,12 @@ export default {
         this.loading1 = false
       }
     },
+
+    async deleteEmail(phone){
+      this.loading2 = phone;
+      const response = await this.$axios.post(process.env.Api + '/admin/deleteEmail', { phone: phone });
+      this.loading2 = false
+    }
 
   },
 }
