@@ -10,11 +10,11 @@
     </div>
 
     <div class="col-md-3 col-xs-12 q-pa-sm">
-      <bankTransfer />
+      <bankTransfer :filter="model" />
     </div>
 
     <div class="col-md-3 col-xs-12 q-pa-sm">
-      <!-- <walletTransfer /> -->
+      <walletTransfer :filter="model" />
     </div>
   </q-page>
 </template>
@@ -22,10 +22,10 @@
 <script>
 import user from 'components/cards/user'
 import bankTransfer from 'components/cards/bankTransfer'
-// import walletTransfer from 'components/cards/walletTransfer'
+import walletTransfer from 'components/cards/walletTransfer'
 export default {
   name: 'PageIndex',
-  components:{ user,bankTransfer },
+  components:{ user,bankTransfer,walletTransfer },
 
   data() {
     return {
