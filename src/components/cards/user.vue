@@ -28,7 +28,7 @@
             <div>
               {{ leftFunc({field: 'createdAt', value: ''},{field: 'gender', value: 'male'}) }}
               |
-              <!-- {{ rightFunc({field: 'createdAt', value: ''}, {field: 'gender', value: 'male'}) }} -->
+              {{ rightFunc({field: 'createdAt', value: ''}, {field: 'gender', value: 'male'}) }}
             </div>
           </div>
           <div class="text-center">
@@ -36,25 +36,29 @@
             <div>
               {{ leftFunc({field: 'createdAt', value: ''}, {field: 'gender', value: 'female'}) }}
               |
-              <!-- {{ rightFunc( {field: 'createdAt', value: ''}, {field: 'gender', value: 'female'}) }} -->
+              {{ rightFunc( {field: 'createdAt', value: ''}, {field: 'gender', value: 'female'}) }}
             </div>
           </div>
         </q-card-section>
 
-        <!-- <q-card-section class="row justify-between">
+        <q-card-section class="row justify-between">
           <div class="text-center">
             <div>Active</div>
             <div>
-              {{ leftFunc(users, {field: 'status', value: 'active'}, {}, filter) }} | {{ rightFunc(users, {field: 'createdAt', value: ''}, {field: 'status', value: 'active'}, filter ) }}
+              {{ leftFunc({field: 'createdAt', value: ''},{field: 'status', value: 'active'}) }}
+              |
+              {{ rightFunc({field: 'createdAt', value: ''}, {field: 'status', value: 'active'} ) }}
             </div>
           </div>
           <div class="text-center">
             <div>Inactive</div>
             <div>
-              {{ leftFunc(users, {field: 'status', value: 'inactive'}) }} | {{ rightFunc(users, {field: 'createdAt', value: ''}, {field: 'status', value: 'inactive'}, filter) }}
+              {{ leftFunc({field: 'createdAt', value: ''},{field: 'status', value: 'pending'}) }}
+              |
+              {{ rightFunc({field: 'createdAt', value: ''}, {field: 'status', value: 'pending'}) }}
             </div>
           </div>
-        </q-card-section> -->
+        </q-card-section>
       </q-card>
   </div>
 </template>
@@ -101,7 +105,7 @@ export default {
       }else if(filter && filter.value == 'year' && filter.type == 'base'){
         return this.sortYear(data, query1, query2, 'previous').length
       }else{
-        return this.sortGeneralField(data, {}).length
+        return this.sortGeneralField(data, query1, query2).length
       }
 
     },

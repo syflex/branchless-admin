@@ -17,10 +17,10 @@ export default {
   },
 
   methods: {
-    sortGeneralField(data, query1) {
-      if (query1) {
+    sortGeneralField(data, query1, query2) {
+      if (query2) {
         const result = data.filter(function(data) {
-          return data[query1.field] == query1.value;
+          return data[query2.field] == query2.value;
         });
         return result ? result : 0;
       }else{
