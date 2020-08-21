@@ -21,11 +21,11 @@
 
 <script>
 import user from 'components/cards/user'
-import bankTransfer from 'components/cards/bankTransfer'
-import walletTransfer from 'components/cards/walletTransfer'
+// import bankTransfer from 'components/cards/bankTransfer'
+// import walletTransfer from 'components/cards/walletTransfer'
 export default {
   name: 'PageIndex',
-  components:{ user,bankTransfer,walletTransfer },
+  components:{ user },
 
   data() {
     return {

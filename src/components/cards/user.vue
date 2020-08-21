@@ -45,7 +45,7 @@
           <div class="text-center">
             <div>Active</div>
             <div>
-              {{ leftFunc({field: 'createdAt', value: ''},{field: 'status', value: 'active'}) }}
+              {{ leftFunc({field: 'createdAt', value: ''}, {field: 'status', value: 'active'}) }}
               |
               {{ rightFunc({field: 'createdAt', value: ''}, {field: 'status', value: 'active'} ) }}
             </div>
@@ -53,7 +53,7 @@
           <div class="text-center">
             <div>Inactive</div>
             <div>
-              {{ leftFunc({field: 'createdAt', value: ''},{field: 'status', value: 'pending'}) }}
+              {{ leftFunc({field: 'createdAt', value: ''}, {field: 'status', value: 'pending'}) }}
               |
               {{ rightFunc({field: 'createdAt', value: ''}, {field: 'status', value: 'pending'}) }}
             </div>
