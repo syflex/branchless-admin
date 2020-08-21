@@ -13,7 +13,7 @@
         <template v-slot:body="props">
         <q-tr :props="props">
           <q-td key="name" :props="props">
-            {{ props.row.name }}
+            {{'to be updated'}}
           </q-td>
           <q-td key="phone" :props="props">
               {{ props.row.phone }}

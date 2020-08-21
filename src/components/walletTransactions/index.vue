@@ -17,10 +17,10 @@
         <template v-slot:body="props">
         <q-tr :props="props">
           <q-td key="name" :props="props">
-            {{ getName(props.row.phone) }}
+            {{'to be updated'}}
           </q-td>
           <q-td key="phone" :props="props">
-              {{ props.row.phone }}
+            {{ props.row.phone }}
           </q-td>
           <q-td key="amount" :props="props">
             <q-badge color="negative" class="text-bold">
@@ -98,23 +98,6 @@ export default {
 
       return formatter.format(amount); /* $2,500.00 */
     },
-
-    getName(phone){
-      const name = this.getUsername(phone)
-      console.log(name);
-    },
-
-    async getUsername(phone){
-       return await new Promise((resolve, reject) => {
-        this.$axios.post(process.env.Api + '/admin/userName', { phone: phone })
-        .then(response => {
-          resolve(response);
-          })
-          .catch(err => {
-            reject(err);
-          });
-      });
-    }
   },
 }
 </script>

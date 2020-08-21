@@ -6,13 +6,13 @@
         class="transparent card-border col-md-3 col-xs-12 shadow-5 hoverable shadow-transition"
       >
         <q-card-section class="column flex-center">
-         
+
           <div class="text-bold row flex-center">
             <q-icon name="fa fa-piggy-bank" class="q-mr-md" />
             <div>Bank Transactions</div>
           </div>
           <div class="text-h6 text-bold">
-             <span class="text-caption text-grey-8">{{filter && filter.value ? 'Previous ' + getFilterLabel() : 'total'}}</span>
+            <span class="text-caption text-grey-8">{{filter && filter.value ? 'Previous ' + getFilterLabel() : 'total'}}</span>
             {{ leftFunc({ field: 'createdAt', value: '' }, false) }}
             |
             {{ rightFunc( {field: 'createdAt', value: ''}, false) }}

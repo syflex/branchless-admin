@@ -11,11 +11,11 @@
             <div>Wallet Transactions</div>
           </div>
           <div class="text-h6 text-bold">
-            <span class="text-caption text-grey-8">total</span>
+            <span class="text-caption text-grey-8">{{filter && filter.value ? 'Previous ' + getFilterLabel() : 'total'}}</span>
             {{ leftFunc({ field: 'createdAt', value: '' }, false) }}
             |
             {{ rightFunc( {field: 'createdAt', value: ''}, false) }}
-            <span class="text-caption text-grey-8">today</span>
+            <span class="text-caption text-grey-8">{{filter && filter.value ? 'this ' + getFilterLabel() : 'today'}}</span>
           </div>
         </q-card-section>
 
