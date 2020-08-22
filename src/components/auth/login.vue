@@ -60,9 +60,12 @@ export default {
 
   methods: {
     async login(){
-        this.$axios.post(process.env.Admin_Api+'/api/login', this.form)
-        await this.$store.dispatch('DataAuth/login');
-        this.$router.push({name: 'users'});
+        const response = this.$axios.post(process.env.Api+'/admin/login', { phone: this.form.email, pin: this.form.email})
+        const data = response.data
+        this.$axios.defaults.headers.common['Authorization'] = data.token;
+        commit('login', { data: data });
+        // await this.$store.dispatch('DataAuth/login');
+        // this.$router.push({name: 'users'});
     }
   },
 }
