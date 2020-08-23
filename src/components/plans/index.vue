@@ -3,7 +3,7 @@
     <q-table square title="Bank Transactions" :data="plans" :columns="columns" row-key="phone" :filter="filter">
 
       <template v-slot:top-right>
-        <create class="q-mr-sm"/>
+        <!-- <create class="q-mr-sm"/> -->
         <q-input outlined dense debounce="300" v-model="filter" placeholder="Search">
           <template v-slot:append>
             <q-icon name="search" />
@@ -54,10 +54,10 @@
 
 <script>
 import { date } from 'quasar'
-import create from './create'
+// import create from './create'
 export default {
   // name: 'ComponentName',
-  components:{create},
+  // components:{create},
   data () {
     return {
       plans: [],
