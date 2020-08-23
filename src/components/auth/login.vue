@@ -62,8 +62,9 @@ export default {
     async login(){
         const response = await this.$axios.post(process.env.Api+'/admin/login', this.form )
         const data = response.data
+        // console.log(data);
         this.$axios.defaults.headers.common['Authorization'] = data.token;
-        await this.$store.commit('login', { data: data });
+        await this.$store.commit('DataAuth/login', { data: data });
         // await this.$store.dispatch('DataAuth/login');
         this.$router.push({name: 'users'});
     }
