@@ -90,7 +90,8 @@
 
     </div>
 
-    <savingsConp v-if="userSavings.data.length"  :savings="userSavings.data" :name="user[0].name" class="q-mb-sm"/>
+    <savingsConp v-if="userSavings.data"  :savings="userSavings.data" :name="user[0].name" class="q-mb-sm"/>
+    <div v-else class="text-h6 text-white">Users Saving Has a Server Error</div>
 
     <walletComp v-if="userWalletTrans.data.length" :walletTrans="userWalletTrans.data" :name="user[0].name" class="q-mb-sm"/>
     <bankComp v-if="userBankTrans.data.length" :bankTrans="userBankTrans.data" :name="user[0].name" class="q-mb-sm"/>
