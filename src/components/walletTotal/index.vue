@@ -1,9 +1,9 @@
 <template>
   <div>
     <q-card class="column flex-center" flat="">
-    <q-card-section>
-         <h4> {{currencyFormat(walletTotal)}} </h4>
-    </q-card-section>
+      <q-card-section>
+        <h4> {{(currencyFormat(walletTotal/100))}} </h4>
+      </q-card-section>
     </q-card>
 
   </div>
