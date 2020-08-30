@@ -4,6 +4,10 @@
     <q-table square title="Users" :data="users" :columns="columns" row-key="phone"  :filter="filter">
 
       <template v-slot:top-right>
+         <q-btn color="primary" icon-right="archive" class="q-mr-sm"
+          label="Export to csv" no-caps
+          @click="exportTable"
+        />
         <q-input outlined dense debounce="300" v-model="filter" placeholder="Search">
           <template v-slot:append>
             <q-icon name="search" />
@@ -51,8 +55,20 @@
               {{ formatDate(props.row.date_of_birth) }}
           </q-td>
           <q-td key="action" :props="props" class="q-gutter-xs">
-               <q-btn size="sm" no-caps color="primary" label="View" :to="{name: 'user-details', params:{phone: props.row.phone}}" />
+              <!-- View Users Details -->
+              <q-btn size="sm" no-caps color="primary" label="View" :to="{name: 'user-details', params:{phone: props.row.phone}}" />
 
+               <!-- Verify user button -->
+              <q-btn size="sm" v-if="!props.row.verified" no-caps :color="'negative'" @click="verifyUser(props.row.phone)" :loading="loading3 == props.row.phone ? true : false">
+               {{ 'Verify User' }}
+                <template v-slot:loading>
+                  <div class="text-italic">
+                      <q-spinner-oval /> Verifying user...
+                  </div>
+                </template>
+              </q-btn>
+
+              <!-- Toggle Enable or Disable Users -->
               <q-btn size="sm" no-caps :color="props.row.status == 'active' ? 'negative' : 'primary'"  @click="enableDisableUser(props.row.phone, props.row.status)" :loading="loading1 == props.row.phone ? true : false">
                   {{ props.row.status == 'active' ? 'Disable' : 'Enable' }}
                 <template v-slot:loading>
@@ -62,6 +78,7 @@
                 </template>
               </q-btn>
 
+              <!-- Toggle User as Agent and Back To User -->
               <q-btn size="sm" no-caps :color="props.row.agent ? 'primary' : 'secondary'" @click="agentFunc(props.row.phone, props.row.agent)" :loading="loading == props.row.phone ? true : false">
                {{ props.row.agent ? 'Make User' :  'Make Agent' }}
                 <template v-slot:loading>
@@ -71,7 +88,8 @@
                 </template>
               </q-btn>
 
-               <q-btn size="sm" no-caps :color="'negative'" @click="deleteEmail(props.row.phone)" :loading="loading2 == props.row.phone ? true : false">
+              <!-- delete user button -->
+              <q-btn size="sm" no-caps :color="'negative'" @click="deleteEmail(props.row.phone)" :loading="loading2 == props.row.phone ? true : false">
                {{ 'Delete Email' }}
                 <template v-slot:loading>
                   <div class="text-italic">
@@ -91,6 +109,27 @@
 
 <script>
 import { date } from 'quasar'
+import { exportFile } from 'quasar'
+function wrapCsvValue (val, formatFn) {
+  let formatted = formatFn !== void 0
+    ? formatFn(val)
+    : val
+
+  formatted = formatted === void 0 || formatted === null
+    ? ''
+    : String(formatted)
+
+  formatted = formatted.split('"').join('""')
+  /**
+   * Excel accepts \n and \r in strings, but some other CSV parsers do not
+   * Uncomment the next two lines to escape new lines
+   */
+  // .split('\n').join('\\n')
+  // .split('\r').join('\\r')
+
+  return `"${formatted}"`
+}
+
 export default {
   // name: 'ComponentName',
   data () {
@@ -99,6 +138,8 @@ export default {
       loading: false,
       loading1: false,
       loading2: false,
+      loading3: false,
+      loading4: false,
       columns: [
         {
           name: 'name',
@@ -112,8 +153,8 @@ export default {
         { name: 'phone', align: 'center', label: 'Phone', field: 'phone', sortable: true },
         { name: 'email', label: 'Email', field: 'email', sortable: true },
         { name: 'location', label: 'Location', field: 'location', sortable: true },
-        { name: 'gender', label: 'Gender', field: 'gender' },
-        { name: 'verified', label: 'Verified', field: 'verified' },
+        { name: 'gender', label: 'Gender', field: 'gender', sortable: true },
+        { name: 'verified', label: 'Verified', field: 'verified', sortable: true },
         { name: 'status', label: 'Status', field: 'status', sortable: true },
         { name: 'agent', label: 'Agent', field: 'agent', sortable: true },
         // { name: 'subscribed', label: 'Subscribed', field: 'subscribed', sortable: true },
@@ -176,10 +217,52 @@ export default {
       }
     },
 
+
+
     async deleteEmail(phone){
       this.loading2 = phone;
       const response = await this.$axios.post(process.env.Api + '/admin/deleteEmail', { phone: phone });
       this.loading2 = false
+    },
+
+    async verifyUser(phone){
+      this.loading3 = phone;
+      try {
+        const response = await this.$axios.post(process.env.Api + '/admin/verifyUser', { phone: phone });
+        const data = await response.data;
+        this.$store.dispatch('DataAuth/getUsers');
+        this.$q.notify({ color: 'primary', message: 'User: Verified Successfully', icon: 'info'})
+        this.loading3 = false
+      } catch (error) {
+        this.loading3 = false
+      }
+    },
+
+    exportTable () {
+      // naive encoding to csv format
+      const data = this.$store.getters['DataAuth/users']
+      const content = [ this.columns.map(col => wrapCsvValue(col.label)) ].concat(
+        data.map(row => this.columns.map(col => wrapCsvValue(
+          typeof col.field === 'function'
+            ? col.field(row)
+            : row[col.field === void 0 ? col.name : col.field],
+          col.format
+        )).join(','))
+      ).join('\r\n')
+
+      const status = exportFile(
+        'table-export.csv',
+        content,
+        'text/csv'
+      )
+
+      if (status !== true) {
+        this.$q.notify({
+          message: 'Browser denied file download...',
+          color: 'negative',
+          icon: 'warning'
+        })
+      }
     }
 
   },
