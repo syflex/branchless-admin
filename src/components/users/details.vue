@@ -7,16 +7,19 @@
           <div class="self-center full-width no-outline" tabindex="0">{{ user[0].name }}</div>
         </template>
       </q-field>
+
       <q-field dense color="black" bg-color="white" outlined label="Wallet Balance" stack-label class="col-xs-12 col-sm-6 col-md-3  q-pa-xs">
         <template v-slot:control>
           <div class="self-center full-width no-outline" tabindex="0">{{ userWallet ? currencyFormat(userWallet.data.balance) : 'server error'  }}</div>
         </template>
       </q-field>
+
       <q-field dense color="black" bg-color="white" outlined label="Phone Number" stack-label class="col-xs-12 col-sm-6 col-md-3  q-pa-xs">
         <template v-slot:control>
           <div class="self-center full-width no-outline" tabindex="0">{{ user[0].phone }}</div>
         </template>
       </q-field>
+
       <q-field dense color="black" bg-color="white" outlined label="UUID" stack-label class="col-xs-12 col-sm-6 col-md-3  q-pa-xs">
         <template v-slot:control>
           <div class="self-center full-width no-outline" tabindex="0">{{ user[0].uid }}</div>
@@ -27,6 +30,7 @@
           <div class="self-center full-width no-outline" tabindex="0">{{ user[0].location }}</div>
         </template>
       </q-field>
+
       <q-field dense color="black" bg-color="white" outlined label="Date Of Birth" stack-label class="col-xs-12 col-sm-6 col-md-3  q-pa-xs">
         <template v-slot:control>
           <div class="self-center full-width no-outline" tabindex="0">{{ formatDate(user[0].date_of_birth) }}</div>
@@ -38,6 +42,7 @@
           <div class="self-center full-width no-outline" tabindex="0">{{ user[0].gender }}</div>
         </template>
       </q-field>
+
       <q-field dense color="black" bg-color="white" outlined label="Verified" stack-label class="col-xs-12 col-sm-6 col-md-3  q-pa-xs">
         <template v-slot:control>
           <div class="self-center full-width no-outline" tabindex="0">
@@ -45,6 +50,7 @@
           </div>
         </template>
       </q-field>
+
       <q-field dense color="black" bg-color="white" outlined label="Status" stack-label class="col-xs-12 col-sm-6 col-md-3  q-pa-xs">
         <template v-slot:control>
           <div class="self-center full-width no-outline" tabindex="0">
@@ -52,6 +58,7 @@
           </div>
         </template>
       </q-field>
+
       <q-field dense color="black" bg-color="white" outlined label="Agent" stack-label class="col-xs-12 col-sm-6 col-md-3  q-pa-xs">
         <template v-slot:control>
           <div class="self-center full-width no-outline" tabindex="0">
@@ -59,29 +66,43 @@
           </div>
         </template>
       </q-field>
-      <q-field dense color="black" bg-color="white" outlined label="Subscribed" stack-label class="col-xs-12 col-sm-6 col-md-3  q-pa-xs">
+
+      <q-field dense color="black" bottom-slots bg-color="white" outlined label="Subscribed" stack-label class="col-xs-12 col-sm-6 col-md-3  q-pa-xs">
         <template v-slot:control>
           <div class="self-center full-width no-outline" tabindex="0">
             <q-badge :color="user[0].subscribed ? 'primary' : 'negative'" :label="user[0].subscribed ? 'Subscriber' : 'None Subscriber'" />
-
           </div>
         </template>
+        <template v-slot:after v-if="user[0].agent && !user[0].subscribed">
+          <q-btn color="negative" no-caps="" dense @click="enableAgentSubscription(user[0].phone)"
+            label="Activate Subscription" :loading="loading" >
+                <template v-slot:loading>
+                  <div class="text-italic">
+                      <q-spinner-oval /> Enabling agents subscription...
+                  </div>
+                </template>
+            </q-btn>
+        </template>
       </q-field>
+
       <q-field dense color="black" bg-color="white" outlined label="Due Date" stack-label class="col-xs-12 col-sm-6 col-md-3  q-pa-xs">
         <template v-slot:control>
           <div class="self-center full-width no-outline" tabindex="0">{{ user[0].due_date }}</div>
         </template>
       </q-field>
+
       <q-field dense color="black" bg-color="white" outlined label="Email" stack-label class="col-xs-12 col-sm-6 col-md-3  q-pa-xs">
         <template v-slot:control>
           <div class="self-center full-width no-outline" tabindex="0">{{ user[0].email }}</div>
         </template>
       </q-field>
+
       <q-field dense color="black" bg-color="white" outlined label="Date Created" stack-label class="col-xs-12 col-sm-6 col-md-3  q-pa-xs">
         <template v-slot:control>
           <div class="self-center full-width no-outline" tabindex="0">{{ formatDate(user[0].createdAt) }}</div>
         </template>
       </q-field>
+
       <q-field dense color="black" bg-color="white" outlined label="Date Updated" stack-label class="col-xs-12 col-sm-6 col-md-3  q-pa-xs">
         <template v-slot:control>
           <div class="self-center full-width no-outline" tabindex="0">{{ formatDate(user[0].updatedAt) }}</div>
@@ -108,6 +129,7 @@ export default {
   components:{savingsConp,walletComp,bankComp},
   data () {
     return {
+      loading: false,
       user: '',
       userWallet: '',
       userSavings: [],
@@ -138,7 +160,6 @@ export default {
       return formatter.format(amount); /* $2,500.00 */
     },
     async getUser(phone){
-      this.loading = phone;
       try {
         const response = await this.$axios.post(process.env.Api + '/admin/findUser', { phone: phone });
         const data = await response.data;
@@ -149,7 +170,6 @@ export default {
     },
 
     async getUserWallet(phone){
-      this.loading = phone;
       try {
         const response = await this.$axios.post(process.env.Api + '/admin/userBalance', {phone: phone});
         const data = response.data;
@@ -160,7 +180,6 @@ export default {
     },
 
     async getUserSavings(phone){
-      this.loading = phone;
       try {
         const response = await this.$axios.get(process.env.Api + '/admin/userSavings?phone='+ phone);
         const data = await response.data;
@@ -171,7 +190,6 @@ export default {
     },
 
     async getUserWalletTrans(phone){
-      this.loading = phone;
       try {
         const response = await this.$axios.get(process.env.Api + '/admin/userWalletTrans?phone='+ phone);
         const data = response.data;
@@ -182,7 +200,6 @@ export default {
     },
 
     async getUserBankTrans(phone){
-      this.loading = phone;
       try {
         const response = await this.$axios.get(process.env.Api + '/admin/userBankTrans?phone='+ phone);
         const data = response.data;
@@ -191,6 +208,21 @@ export default {
 
       }
     },
+
+    async enableAgentSubscription(phone){
+      this.loading = true;
+      const currentDate = date.formatDate(new Date(), 'YYYY-MM-DD')
+      try {
+        const response = await this.$axios.post(process.env.Api + '/admin/subscribeUser', { phone: phone, date: currentDate });
+        const data = await response.data;
+        this.getUser(this.$route.params.phone);
+        this.$q.notify({ color: 'primary', message: 'Subscription: Activated agent subscription', icon: 'info'})
+        this.loading = false
+      } catch (error) {
+        this.loading = false
+      }
+    },
+
 
   },
 }
