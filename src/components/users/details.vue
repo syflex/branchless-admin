@@ -215,7 +215,7 @@ export default {
       try {
         const response = await this.$axios.post(process.env.Api + '/admin/subscribeUser', { phone: phone, date: currentDate });
         const data = await response.data;
-        // this.$store.dispatch('DataAuth/getUsers');
+        this.getUser(this.$route.params.phone);
         this.$q.notify({ color: 'primary', message: 'Subscription: Activated agent subscription', icon: 'info'})
         this.loading = false
       } catch (error) {
