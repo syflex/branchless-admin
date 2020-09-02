@@ -10,7 +10,7 @@
 
       <q-field dense color="black" bg-color="white" outlined label="Wallet Balance" stack-label class="col-xs-12 col-sm-6 col-md-3  q-pa-xs">
         <template v-slot:control>
-          <div class="self-center full-width no-outline" tabindex="0">{{ userWallet ? currencyFormat(userWallet.data.balance) : 'server error'  }}</div>
+          <div class="self-center full-width no-outline" tabindex="0">{{ userWallet ? currencyFormat(userWallet.data.balance/100) : 'server error'  }}</div>
         </template>
       </q-field>
 
@@ -73,15 +73,8 @@
             <q-badge :color="user[0].subscribed ? 'primary' : 'negative'" :label="user[0].subscribed ? 'Subscriber' : 'None Subscriber'" />
           </div>
         </template>
-        <template v-slot:after v-if="user[0].agent && !user[0].subscribed">
-          <q-btn color="negative" no-caps="" dense @click="enableAgentSubscription(user[0].phone)"
-            label="Activate Subscription" :loading="loading" >
-                <template v-slot:loading>
-                  <div class="text-italic">
-                      <q-spinner-oval /> Enabling agents subscription...
-                  </div>
-                </template>
-            </q-btn>
+        <template v-slot:after v-if="user[0].agent">
+            <activateSubscriber :phone="user[0].phone"/>
         </template>
       </q-field>
 
@@ -124,12 +117,12 @@ import { date } from 'quasar'
 import savingsConp from './partials/savings'
 import walletComp from './partials/walletTrans'
 import bankComp from './partials/bankTrans'
+import activateSubscriber from './partials/activateSubscriber'
 export default {
   // name: 'ComponentName',
-  components:{savingsConp,walletComp,bankComp},
+  components:{savingsConp,walletComp,bankComp,activateSubscriber},
   data () {
     return {
-      loading: false,
       user: '',
       userWallet: '',
       userSavings: [],
@@ -208,21 +201,6 @@ export default {
 
       }
     },
-
-    async enableAgentSubscription(phone){
-      this.loading = true;
-      const currentDate = date.formatDate(new Date(), 'YYYY-MM-DD')
-      try {
-        const response = await this.$axios.post(process.env.Api + '/admin/subscribeUser', { phone: phone, date: currentDate });
-        const data = await response.data;
-        this.getUser(this.$route.params.phone);
-        this.$q.notify({ color: 'primary', message: 'Subscription: Activated agent subscription', icon: 'info'})
-        this.loading = false
-      } catch (error) {
-        this.loading = false
-      }
-    },
-
 
   },
 }
