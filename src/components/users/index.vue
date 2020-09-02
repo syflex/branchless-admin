@@ -48,12 +48,21 @@
               {{ props.row.agent ? 'Agent' : 'User'  }}
             </q-badge>
           </q-td>
+
+          <q-td key="subscribed" :props="props">
+            <q-badge :color="props.row.subscribed ? 'primary' : 'negative'">
+              {{ props.row.subscribed ? 'Subscribed' : 'None-Subscriber' }}
+            </q-badge>
+          </q-td>
+
           <q-td key="createdAt" :props="props">
               {{ formatDate(props.row.createdAt) }}
           </q-td>
+
           <q-td key="date_of_birth" :props="props">
               {{ formatDate(props.row.date_of_birth) }}
           </q-td>
+
           <q-td key="action" :props="props" class="q-gutter-xs">
               <!-- View Users Details -->
               <q-btn size="sm" no-caps color="primary" label="View" :to="{name: 'user-details', params:{phone: props.row.phone}}" />
@@ -157,7 +166,7 @@ export default {
         { name: 'verified', label: 'Verified', field: 'verified', sortable: true },
         { name: 'status', label: 'Status', field: 'status', sortable: true },
         { name: 'agent', label: 'Agent', field: 'agent', sortable: true },
-        // { name: 'subscribed', label: 'Subscribed', field: 'subscribed', sortable: true },
+        { name: 'subscribed', label: 'Subscribed', field: 'subscribed', sortable: true },
         { name: 'createdAt', label: 'Join Date', field: 'createdAt', sortable: true, format: val => `${date.formatDate(val, 'YYYY-MM-DD')}` },
         { name: 'date_of_birth', label: 'Birth Date', field: 'date_of_birth', format: val => `${date.formatDate(val, 'YYYY-MM-DD')}`, },
         { name: 'action', label: 'Action', field: '' },
