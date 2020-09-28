@@ -66,7 +66,7 @@ export default {
         this.$axios.defaults.headers.common['Authorization'] = data.token;
         await this.$store.commit('DataAuth/login', { data: data });
         // await this.$store.dispatch('DataAuth/login');
-        this.$router.push({name: 'users'});
+        this.$router.push({name: 'analytics'});
     }
   },
 }

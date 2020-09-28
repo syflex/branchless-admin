@@ -7,6 +7,7 @@ const routes: RouteConfig[] = [
     children: [
       { path: '', name: 'login', component: () => import('pages/Auth.vue') },
       { path: 'analytics', name: 'analytics', component: () => import('pages/Index.vue') },
+      { path: 'analytics/data', name: 'data', component: () => import('pages/Data.vue') },
       { path: 'analytics/users', name: 'users', component: () => import('pages/Users.vue') },
       { path: 'analytics/user/:phone', name: 'user-details', component: () => import('pages/Users.vue') },
       { path: 'analytics/bank-transaction', name: 'bank-transaction', component: () => import('pages/BankTransactions.vue') },
