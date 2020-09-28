@@ -10,7 +10,8 @@
         </q-toolbar-title>
 
         <q-tabs stretch inline-label active-color="primary" v-if="$q.screen.gt.sm">
-          <q-route-tab no-caps icon="ion-ios-home" label="Home" to="/analytics" exact/>
+          <q-route-tab no-caps icon="ion-ios-home" label="Home" :to="{name: 'analytics'}" exact/>
+          <q-route-tab no-caps icon="ion-ios-home" label="Data Comparism" :to="{name: 'data'}" exact/>
           <q-route-tab no-caps icon="ion-ios-people" label="Users" :to="{name: 'users'}" exact />
           <q-route-tab no-caps icon="account_balance" label="Bank Transactions" :to="{name: 'bank-transaction'}" exact />
           <q-route-tab no-caps icon="fa fa-chart-line" label="Wallet Transactions" :to="{name: 'wallet-transaction'}" exact />
@@ -90,6 +91,12 @@ export default {
           title: 'Home',
           icon: 'home',
           link: 'analytics',
+          disable: false
+        },
+        {
+          title: 'Data Comparism',
+          icon: 'home',
+          link: 'data',
           disable: false
         },
         {

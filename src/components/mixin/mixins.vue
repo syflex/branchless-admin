@@ -29,7 +29,7 @@ export default {
     },
 
     sortToday(data, query1, query2, type){
-       console.log('day on day');
+      console.log('day on day');
       let today;
       if (type == 'current') {
         today = date.formatDate(this.currentDate, 'DDD')
