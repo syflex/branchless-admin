@@ -40,10 +40,13 @@
               {{ currencyFormat((props.row.amount/100)) }}
             </q-badge>
           </q-td>
-           <q-td key="charge" :props="props">
+          <q-td key="charge" :props="props">
             <q-badge color="negative" class="text-bold">
               {{ currencyFormat(props.row.charge/100) }}
             </q-badge>
+          </q-td>
+          <q-td key="txRef" :props="props">
+            {{ props.row.txRef }}
           </q-td>
           <q-td key="createdAt" :props="props">
               {{ formatDate(props.row.createdAt) }}
@@ -100,6 +103,7 @@ export default {
         { name: 'type', label: 'Type', field: 'type' },
         { name: 'amount', label: 'Amount', field: 'amount', sortable: true },
         { name: 'charge', label: 'Charge', field: 'charge', sortable: true },
+        { name: 'txRef', label: 'Transaction Ref', field: 'txRef', sortable: true },
         { name: 'createdAt', label: 'Transaction Date', field: 'createdAt', sortable: true, format: val => `${date.formatDate(val, 'YYYY-MM-DD')}` },
         { name: 'action', label: 'Action', field: '' },
       ]
