@@ -59,7 +59,7 @@
           </div>
 
           <div class="text-h3 text-bold">
-            {{ weekData(users ,{field: 'agent', value: 1}, false) }}
+            {{ weekData(users , {field: 'agent', value: 1}, false) }}
           </div>
         </q-card-section>
       </q-card>
@@ -75,7 +75,7 @@
           </div>
 
           <div class="text-h3 text-bold">
-            {{ annualData(users ,{field: 'agent', value: 1}, false) }}
+             {{ getData(users ,{field: 'createdAt', value: ''},{field: 'agent', value: 1}) }}
           </div>
         </q-card-section>
       </q-card>

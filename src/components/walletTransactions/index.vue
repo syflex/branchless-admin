@@ -42,6 +42,9 @@
               {{ props.row.status }}
             </q-badge>
           </q-td>
+          <q-td key="tx_ref" :props="props">
+            {{ props.row.tx_ref }}
+          </q-td>
           <q-td key="createdAt" :props="props">
               {{ formatDate(props.row.createdAt) }}
           </q-td>
@@ -97,6 +100,7 @@ export default {
         { name: 'reciever', label: 'Reciever', field: 'reciever', sortable: true },
         { name: 'recv_name', label: 'Reciever Name', field: 'recv_name' },
         { name: 'status', label: 'Status', field: 'status', sortable: true },
+        { name: 'tx_ref', label: 'Transaction Ref', field: 'tx_ref', sortable: true },
         { name: 'createdAt', label: 'Transaction Date', field: 'createdAt', sortable: true, format: val => `${date.formatDate(val, 'YYYY-MM-DD')}` },
         { name: 'action', label: 'Action', field: '' },
       ]
