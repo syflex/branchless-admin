@@ -82,6 +82,7 @@ export default {
           return date.formatDate(data[query1.field], 'w') == week && data[query2.field] == query2.value;
         });
       }else{
+        console.log('ok sure');
         result = data.filter(function(data) {
           return date.formatDate(data[query1.field], 'w') == week;
         });
