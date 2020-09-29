@@ -226,8 +226,8 @@ export default {
       return this.sortGeneralField(data, query1, query2).length
     },
     weekData(data, query1, query2){
-      // console.log(data, query1, query2);
-      return this.sortWeek(data, query1, query2).length
+      console.log(data, query1, query2);
+      return this.sortWeek(data, query1, false).length
     },
     annualData(data, query1, query2){
       // console.log(data, query1, query2);
