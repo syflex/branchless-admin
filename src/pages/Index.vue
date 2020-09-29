@@ -55,11 +55,26 @@
         <q-card-section class="column flex-center">
           <div class="text-bold row flex-center">
             <q-icon name="fa fa-users" class="q-mr-md" />
-            <div>Total Weekly Agent Users</div>
+            <div>Total Agent Users This Week</div>
           </div>
 
           <div class="text-h3 text-bold">
-            {{ weekData(users , {field: 'agent', value: 1}, false) }}
+            {{ weekData(users, {field: 'createdAt', value: ''}, {field: 'agent', value: 1}) }}
+          </div>
+        </q-card-section>
+      </q-card>
+</div>
+
+<div class="col-md-3 col-xs-12 q-pa-sm">
+      <q-card square dark class="transparent card-border shadow-5 hoverable shadow-transition">
+        <q-card-section class="column flex-center">
+          <div class="text-bold row flex-center">
+            <q-icon name="fa fa-users" class="q-mr-md" />
+            <div>Total Agent Users This Month</div>
+          </div>
+
+          <div class="text-h3 text-bold">
+            {{ monthData(users, {field: 'createdAt', value: ''}, {field: 'agent', value: 1}) }}
           </div>
         </q-card-section>
       </q-card>
@@ -75,7 +90,7 @@
           </div>
 
           <div class="text-h3 text-bold">
-             {{ getData(users ,{field: 'createdAt', value: ''},{field: 'agent', value: 1}) }}
+            {{ annualData(users, {field: 'createdAt', value: ''}, {field: 'agent', value: 1}) }}
           </div>
         </q-card-section>
       </q-card>
@@ -226,12 +241,16 @@ export default {
       return this.sortGeneralField(data, query1, query2).length
     },
     weekData(data, query1, query2){
-      // console.log(data, query1, query2);
-      return this.sortWeek(data, query1, query2).length
+      const type = 'current';
+      return this.sortWeek(data, query1, query2, type).length
+    },
+    monthData(data, query1, query2){
+      const type = 'current';
+      return this.sortMonth(data, query1, query2, type).length
     },
     annualData(data, query1, query2){
-      // console.log(data, query1, query2);
-      return this.sortYear(data, query1, query2).length
+       const type = 'current';
+      return this.sortYear(data, query1, query2, type).length
     },
   }
 };
