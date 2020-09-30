@@ -50,7 +50,7 @@
 
 </div>
 
-<div class="col-md-3 col-xs-12 q-pa-sm">
+<!-- <div class="col-md-3 col-xs-12 q-pa-sm">
       <q-card square dark class="transparent card-border shadow-5 hoverable shadow-transition">
         <q-card-section class="column flex-center">
           <div class="text-bold row flex-center">
@@ -63,9 +63,9 @@
           </div>
         </q-card-section>
       </q-card>
-</div>
+</div> -->
 
-<div class="col-md-3 col-xs-12 q-pa-sm">
+<!-- <div class="col-md-3 col-xs-12 q-pa-sm">
       <q-card square dark class="transparent card-border shadow-5 hoverable shadow-transition">
         <q-card-section class="column flex-center">
           <div class="text-bold row flex-center">
@@ -78,10 +78,10 @@
           </div>
         </q-card-section>
       </q-card>
-</div>
+</div> -->
 
 
-<div class="col-md-3 col-xs-12 q-pa-sm">
+<!-- <div class="col-md-3 col-xs-12 q-pa-sm">
        <q-card square dark class="transparent card-border shadow-5 hoverable shadow-transition">
         <q-card-section class="column flex-center">
           <div class="text-bold row flex-center">
@@ -91,6 +91,38 @@
 
           <div class="text-h3 text-bold">
             {{ annualData(users, {field: 'createdAt', value: ''}, {field: 'agent', value: 1}) }}
+          </div>
+        </q-card-section>
+      </q-card>
+</div> -->
+
+
+<div class="col-md-3 col-xs-12 q-pa-sm">
+      <q-card square dark class="transparent card-border shadow-5 hoverable shadow-transition">
+        <q-card-section class="column flex-center">
+          <div class="text-bold row flex-center">
+            <q-icon name="fa fa-users" class="q-mr-md" />
+            <div>Total Subscribed Agents</div>
+          </div>
+
+          <div class="text-h3 text-bold">
+             {{ getData1(users ,{field: 'subscribed', value: 1},{field: 'agent', value: 1}) }}
+          </div>
+        </q-card-section>
+      </q-card>
+</div>
+
+
+<div class="col-md-3 col-xs-12 q-pa-sm">
+      <q-card square dark class="transparent card-border shadow-5 hoverable shadow-transition">
+        <q-card-section class="column flex-center">
+          <div class="text-bold row flex-center">
+            <q-icon name="fa fa-users" class="q-mr-md" />
+            <div>Total Unsubscribed Agents</div>
+          </div>
+
+          <div class="text-h3 text-bold">
+             {{ getData1(users ,{field: 'subscribed', value: 0},{field: 'agent', value: 1}) }}
           </div>
         </q-card-section>
       </q-card>
@@ -239,6 +271,10 @@ export default {
     getData(data, query1, query2){
       // console.log(data, query1, query2);
       return this.sortGeneralField(data, query1, query2).length
+    },
+    getData1(data, query1, query2){
+      // console.log(data, query1, query2);
+      return this.sortGeneralField1(data, query1, query2).length
     },
     weekData(data, query1, query2){
       const type = 'current';

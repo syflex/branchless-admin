@@ -28,6 +28,17 @@ export default {
       }
     },
 
+     sortGeneralField1(data, query1, query2) {
+      if (query2) {
+        const result = data.filter(function(data) {
+          return data[query1.field] == query1.value && data[query2.field] == query2.value;
+        });
+        return result ? result : 0;
+      }else{
+        return data
+      }
+    },
+
     sortToday(data, query1, query2, type){
       console.log('day on day');
       let today;
